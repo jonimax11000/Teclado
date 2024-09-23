@@ -22,8 +22,7 @@ public class KeyboardControlator : MonoBehaviour
     [HideInInspector] public string language;
     private List<string> validate_languajes = new List<string>()
     {
-        "English","Spanish","French","German","Russian",
-        "Korean","Greece"
+        "English","Spanish",
     };
     
     private void Start()
@@ -39,8 +38,7 @@ public class KeyboardControlator : MonoBehaviour
             _languaje_selector.value = 0;
         }
         ChangeLanguage(_languaje_selector.value);
-        //ChangeLanguage(5);
-        StartCoroutine("Line");
+        ChangeLanguage(2);
     }
 
     public void ChangeLanguage(int index)
@@ -61,18 +59,6 @@ public class KeyboardControlator : MonoBehaviour
             case 1:
                 language = "es";
                 break;
-            case 2:
-                language = "fr";
-                break;
-            case 3:
-                language = "de";
-                break;
-            case 4:
-                language = "ru";
-                break;
-            case 5:
-                language = "ko";
-                break;
             default:
                 language = "no-exist";
                 break;
@@ -83,19 +69,6 @@ public class KeyboardControlator : MonoBehaviour
     {
         caretpositon = field.caretPosition;
         field.text =field.text.Insert(caretpositon,c);
-        caretpositon += c.Length;
-        field.caretPosition = caretpositon;
-    }
-
-    public void IsertLinerBreak()
-    {
-        InsertChar("\n");
-    }
-    
-    public void InsertWord(string c)
-    {
-        caretpositon = field.caretPosition;
-        field.text = field.text = field.text.Insert(caretpositon,c);
         caretpositon += c.Length;
         field.caretPosition = caretpositon;
     }
@@ -134,36 +107,5 @@ public class KeyboardControlator : MonoBehaviour
     {
         yield return new WaitForSeconds(1);
         g.SetActive(true);
-    }
-    
-    public void LeftPressed()
-    {
-        int caret = field.caretPosition;
-        if (caret > 0)
-        {
-            --caret;
-            field.caretPosition = caret;
-        }
-    }
-    
-    public void RightPressed()
-    {
-        int caret = field.caretPosition;
-        if (caret < field.text.Length)
-        {
-            ++caret;
-            field.caretPosition = caret;
-        }
-    }
-    
-    IEnumerator Line()
-    {
-        while (true)
-        {
-            InsertChar("|");
-            yield return new WaitForSeconds(blinkSpeed);
-            DeleteChar();
-            yield return new WaitForSeconds(blinkSpeed);
-        }
     }
 }

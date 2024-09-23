@@ -6,10 +6,9 @@ using UnityEngine;
 
 public class KeyboardButton : MonoBehaviour
 {
-    private RigidBodyKeyboard keyboard;
+    private VRKeyboard keyboard;
     public Boolean special_letter = false;
     public Boolean not_vowel = true;
-    public Boolean not_Syllable_letter_for_Korean;
     
     public string[] normalForms;
 
@@ -24,66 +23,31 @@ public class KeyboardButton : MonoBehaviour
     {
         ButtonVR buttonVR = GetComponentInChildren<ButtonVR>();
         CanvasButton canvasButton = GetComponentInChildren<CanvasButton>();
-        keyboard = GetComponentInParent<RigidBodyKeyboard>();
+        keyboard = GetComponentInParent<VRKeyboard>();
         GetComponentInParent<KeyboardControlator>();
         text = GetComponentInChildren<TextMeshProUGUI>();
         if (text !=null && text.text.Length == 1)
         {
             Change();
-            switch (keyboard._Keyboardtype)
+            if (buttonVR is not null)
             {
-                case(RigidBodyKeyboard.KeyboardType.Default):
-                    if (buttonVR is not null)
-                    {
-                        buttonVR.onRelease.AddListener(delegate
-                        {
-                            keyboard.insertChar(text.text);
-                        });
-                    }
-
-                    if (canvasButton is not null)
-                    {
-                        canvasButton.onRelease.AddListener(delegate { keyboard.insertChar(text.text); });
-                    }
-
-                    break;
-                case(RigidBodyKeyboard.KeyboardType.Korean):
-                    if (buttonVR is not null)
-                    {
-                        buttonVR.onRelease.AddListener(delegate
-                        {
-                            keyboard.Korean_Syllable_Formation(text.text, not_vowel,
-                                not_Syllable_letter_for_Korean);
-                        });
-                    }
-
-                    if (canvasButton is not null)
-                    {
-                        canvasButton.onRelease.AddListener(delegate
-                        {
-                            keyboard.Korean_Syllable_Formation(text.text, not_vowel,
-                                not_Syllable_letter_for_Korean);
-                        });
-                    }
-                    break;
-                default:
-                    if (buttonVR is not null)
-                    {
-                        buttonVR.onRelease.AddListener(delegate { keyboard.insertChar(text.text); });
-                    }
-                    if (canvasButton is not null)
-                    {
-                        canvasButton.onRelease.AddListener(delegate { keyboard.insertChar(text.text); });
-                    }
-
-                    break;
+                buttonVR.onRelease.AddListener(delegate
+                {
+                    keyboard.insertChar(text.text);
+                });
             }
+
+            if (canvasButton is not null)
+            {
+                canvasButton.onRelease.AddListener(delegate { keyboard.insertChar(text.text); });
+            }
+
         }
     }
     
     public void Change()
     {
-        keyboard = GetComponentInParent<RigidBodyKeyboard>();
+        keyboard = GetComponentInParent<VRKeyboard>();
         text = GetComponentInChildren<TextMeshProUGUI>();
         if (!special_letter)
         {
