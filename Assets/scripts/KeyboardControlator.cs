@@ -23,7 +23,7 @@ public class KeyboardControlator : MonoBehaviour
     private List<string> validate_languajes = new List<string>()
     {
         "English","Spanish","French","German","Russian",
-        "Korean","Greece"
+        "Korean","Greece","Arabic"
     };
     
     private void Start()
@@ -38,9 +38,9 @@ public class KeyboardControlator : MonoBehaviour
         {
             _languaje_selector.value = 0;
         }
-        ChangeLanguage(_languaje_selector.value);
-        //ChangeLanguage(5);
-        StartCoroutine("Line");
+        //ChangeLanguage(_languaje_selector.value);
+        ChangeLanguage(7);
+        //StartCoroutine("Line");
     }
 
     public void ChangeLanguage(int index)
@@ -52,31 +52,6 @@ public class KeyboardControlator : MonoBehaviour
         }
         RigidBodies_Keyboards[index].SetActive(true);
         Canvas_Keyboards[index].SetActive(true);
-
-        switch (index)
-        {
-            case 0:
-                language = "en";
-                break;
-            case 1:
-                language = "es";
-                break;
-            case 2:
-                language = "fr";
-                break;
-            case 3:
-                language = "de";
-                break;
-            case 4:
-                language = "ru";
-                break;
-            case 5:
-                language = "ko";
-                break;
-            default:
-                language = "no-exist";
-                break;
-        }
     }
 
     public void InsertChar(string c)

@@ -91,6 +91,14 @@ public class FormadorDeSilabasUnity  : MonoBehaviour
 
         return new string(processedText);
     }
+    
+    static string ReverseText(string text)
+    {
+        char[] array = text.ToCharArray();
+        Array.Reverse(array);
+        return new string(array);
+    }
+    
     public void Start()
     {
         string textSoFar = ""; // Texto acumulado
@@ -100,7 +108,7 @@ public class FormadorDeSilabasUnity  : MonoBehaviour
         foreach (char letter in input)
         {
             textSoFar = ProcessLetterByLetter(textSoFar, letter);
-            Debug.Log("Texto procesado hasta ahora: " + textSoFar);
+            Debug.Log(ReverseText(textSoFar));
         }
     }
 }

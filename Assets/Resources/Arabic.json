@@ -1,0 +1,321 @@
+{
+  "ذ": {
+    "tecla_sin_shift": "ذ",
+    "tecla_con_shift": "~",
+    "tecla_con_altgr": "ـ",
+    "formas": {
+      "aislada": "ذ",
+      "inicial": "ـذ",
+      "medial": "ـذـ",
+      "final": "ـذ"
+    }
+  },
+  "1": {
+    "tecla_sin_shift": "1",
+    "tecla_con_shift": "!",
+    "tecla_con_altgr": "١",
+    "formas": {
+      "aislada": "١",
+      "inicial": "١",
+      "medial": "١",
+      "final": "١"
+    }
+  },
+  "2": {
+    "tecla_sin_shift": "2",
+    "tecla_con_shift": "@",
+    "tecla_con_altgr": "٢",
+    "formas": {
+      "aislada": "٢",
+      "inicial": "٢",
+      "medial": "٢",
+      "final": "٢"
+    }
+  },
+  "3": {
+    "tecla_sin_shift": "3",
+    "tecla_con_shift": "#",
+    "tecla_con_altgr": "٣",
+    "formas": {
+      "aislada": "٣",
+      "inicial": "٣",
+      "medial": "٣",
+      "final": "٣"
+    }
+  },
+  "4": {
+    "tecla_sin_shift": "4",
+    "tecla_con_shift": "$",
+    "tecla_con_altgr": "٤",
+    "formas": {
+      "aislada": "٤",
+      "inicial": "٤",
+      "medial": "٤",
+      "final": "٤"
+    }
+  },
+  "5": {
+    "tecla_sin_shift": "5",
+    "tecla_con_shift": "%",
+    "tecla_con_altgr": "٥",
+    "formas": {
+      "aislada": "٥",
+      "inicial": "٥",
+      "medial": "٥",
+      "final": "٥"
+    }
+  },
+  "6": {
+    "tecla_sin_shift": "6",
+    "tecla_con_shift": "^",
+    "tecla_con_altgr": "٦",
+    "formas": {
+      "aislada": "٦",
+      "inicial": "٦",
+      "medial": "٦",
+      "final": "٦"
+    }
+  },
+  "7": {
+    "tecla_sin_shift": "7",
+    "tecla_con_shift": "&",
+    "tecla_con_altgr": "٧",
+    "formas": {
+      "aislada": "٧",
+      "inicial": "٧",
+      "medial": "٧",
+      "final": "٧"
+    }
+  },
+  "8": {
+    "tecla_sin_shift": "8",
+    "tecla_con_shift": "*",
+    "tecla_con_altgr": "٨",
+    "formas": {
+      "aislada": "٨",
+      "inicial": "٨",
+      "medial": "٨",
+      "final": "٨"
+    }
+  },
+  "9": {
+    "tecla_sin_shift": "9",
+    "tecla_con_shift": "(",
+    "tecla_con_altgr": "٩",
+    "formas": {
+      "aislada": "٩",
+      "inicial": "٩",
+      "medial": "٩",
+      "final": "٩"
+    }
+  },
+  "0": {
+    "tecla_sin_shift": "0",
+    "tecla_con_shift": ")",
+    "tecla_con_altgr": "٠",
+    "formas": {
+      "aislada": "٠",
+      "inicial": "٠",
+      "medial": "٠",
+      "final": "٠"
+    }
+  },
+  "ـ": {
+    "tecla_sin_shift": "-",
+    "tecla_con_shift": "_",
+    "tecla_con_altgr": "ـ",
+    "formas": {
+      "aislada": "ـ",
+      "inicial": "ـ",
+      "medial": "ـ",
+      "final": "ـ"
+    }
+  },
+  "=،": {
+    "tecla_sin_shift": "=",
+    "tecla_con_shift": "+",
+    "tecla_con_altgr": "=،",
+    "formas": {
+      "aislada": "=،",
+      "inicial": "=،",
+      "medial": "=،",
+      "final": "=،"
+    }
+  },
+  "ض": {
+    "tecla_sin_shift": "ض",
+    "tecla_con_shift": "َ",
+    "tecla_con_altgr": "ض",
+    "formas": {
+      "aislada": "ض",
+      "inicial": "ضـ",
+      "medial": "ـضـ",
+      "final": "ـض"
+    }
+  },
+  "ص": {
+    "tecla_sin_shift": "ص",
+    "tecla_con_shift": "ً",
+    "tecla_con_altgr": "ص",
+    "formas": {
+      "aislada": "ص",
+      "inicial": "صـ",
+      "medial": "ـصـ",
+      "final": "ـص"
+    }
+  },
+  "ث": {
+    "tecla_sin_shift": "ث",
+    "tecla_con_shift": "ُ",
+    "tecla_con_altgr": "ث",
+    "formas": {
+      "aislada": "ث",
+      "inicial": "ثـ",
+      "medial": "ـثـ",
+      "final": "ـث"
+    }
+  },
+  "ق": {
+    "tecla_sin_shift": "ق",
+    "tecla_con_shift": "ٌ",
+    "tecla_con_altgr": "ق",
+    "formas": {
+      "aislada": "ق",
+      "inicial": "قـ",
+      "medial": "ـقـ",
+      "final": "ـق"
+    }
+  },
+  "ف": {
+    "tecla_sin_shift": "ف",
+    "tecla_con_shift": "ْ",
+    "tecla_con_altgr": "ف",
+    "formas": {
+      "aislada": "ف",
+      "inicial": "فـ",
+      "medial": "ـفـ",
+      "final": "ـف"
+    }
+  },
+  "غ": {
+    "tecla_sin_shift": "غ",
+    "tecla_con_shift": "}",
+    "tecla_con_altgr": "غ",
+    "formas": {
+      "aislada": "غ",
+      "inicial": "غـ",
+      "medial": "ـغـ",
+      "final": "ـغ"
+    }
+  },
+  "ع": {
+    "tecla_sin_shift": "ع",
+    "tecla_con_shift": "{",
+    "tecla_con_altgr": "ع",
+    "formas": {
+      "aislada": "ع",
+      "inicial": "عـ",
+      "medial": "ـعـ",
+      "final": "ـع"
+    }
+  },
+  "ه": {
+    "tecla_sin_shift": "ه",
+    "tecla_con_shift": "\\",
+    "tecla_con_altgr": "ه",
+    "formas": {
+      "aislada": "ه",
+      "inicial": "هـ",
+      "medial": "ـهـ",
+      "final": "ـه"
+    }
+  },
+  "خ": {
+    "tecla_sin_shift": "خ",
+    "tecla_con_shift": "`",
+    "tecla_con_altgr": "خ",
+    "formas": {
+      "aislada": "خ",
+      "inicial": "خـ",
+      "medial": "ـخـ",
+      "final": "ـخ"
+    }
+  },
+  "ح": {
+    "tecla_sin_shift": "ح",
+    "tecla_con_shift": "\"",
+    "tecla_con_altgr": "ح",
+    "formas": {
+      "aislada": "ح",
+      "inicial": "حـ",
+      "medial": "ـحـ",
+      "final": "ـح"
+    }
+  },
+  "ج": {
+    "tecla_sin_shift": "ج",
+    "tecla_con_shift": ":",
+    "tecla_con_altgr": "ج",
+    "formas": {
+      "aislada": "ج",
+      "inicial": "جـ",
+      "medial": "ـجـ",
+      "final": "ـج"
+    }
+  },
+  "د": {
+    "tecla_sin_shift": "د",
+    "tecla_con_shift": "<",
+    "tecla_con_altgr": "د",
+    "formas": {
+      "aislada": "د",
+      "inicial": "دـ",
+      "medial": "ـدـ",
+      "final": "ـد"
+    }
+  },
+  "ش": {
+    "tecla_sin_shift": "ش",
+    "tecla_con_shift": "ٍ",
+    "tecla_con_altgr": "ش",
+    "formas": {
+      "aislada": "ش",
+      "inicial": "شـ",
+      "medial": "ـشـ",
+      "final": "ـش"
+    }
+  },
+  "س": {
+    "tecla_sin_shift": "س",
+    "tecla_con_shift": "ُ",
+    "tecla_con_altgr": "س",
+    "formas": {
+      "aislada": "س",
+      "inicial": "سـ",
+      "medial": "ـسـ",
+      "final": "ـس"
+    }
+  },
+  "ص": {
+    "tecla_sin_shift": "ص",
+    "tecla_con_shift": "ً",
+    "tecla_con_altgr": "ص",
+    "formas": {
+      "aislada": "ص",
+      "inicial": "صـ",
+      "medial": "ـصـ",
+      "final": "ـص"
+    }
+  },
+  "ط": {
+    "tecla_sin_shift": "ط",
+    "tecla_con_shift": "^",
+    "tecla_con_altgr": "ط",
+    "formas": {
+      "aislada": "ط",
+      "inicial": "طـ",
+      "medial": "ـطـ",
+      "final": "ـط"
+    }
+  }
+}
