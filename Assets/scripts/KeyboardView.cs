@@ -43,6 +43,14 @@ public class KeyboardView : MonoBehaviour
 
     void OnKey(int scanCode) => controller.Session.PressKey(scanCode);
 
+    // Teclas especiales: la plantilla las cablea a su propio KeyboardView, que reenvía al controlador.
+    public void OnShift() => controller.OnShift();
+    public void OnAltGr() => controller.OnAltGr();
+    public void OnSpace() => controller.OnSpace();
+    public void OnBackspace() => controller.OnBackspace();
+    public void OnLeft() => controller.OnLeft();
+    public void OnRight() => controller.OnRight();
+
     public void Refresh()
     {
         var state = controller.Session.State;

@@ -106,4 +106,15 @@ public class KeyViewTests
         Key(E).GetComponent<CanvasButton>().onRelease.Invoke();
         Assert.AreEqual("", rig.Controller.Buffer.CommittedText);
     }
+
+    [UnityTest] public IEnumerator Especiales_ReenvianAlControlador()
+    {
+        yield return Build(SpanishLike(), E);
+        keyboard.OnShift();
+        Key(E).GetComponent<CanvasButton>().onRelease.Invoke();
+        keyboard.OnSpace();
+        Key(E).GetComponent<CanvasButton>().onRelease.Invoke();
+        keyboard.OnBackspace();
+        Assert.AreEqual("E ", rig.Controller.Buffer.CommittedText);
+    }
 }
