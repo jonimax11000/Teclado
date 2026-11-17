@@ -1,0 +1,423 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 049e770fc31d11691a66df9db501e5f2, type: 3}
+  m_Name: "\u0627\u0644\u0639\u0631\u0628\u064A\u0629"
+  m_EditorClassIdentifier: Teclado.Runtime::KeyboardLayout
+  data:
+    displayName: "\u0627\u0644\u0639\u0631\u0628\u064A\u0629"
+    order: 7
+    systemLanguage: Arabic
+    template: 0
+    composer: 0
+    isRtl: 1
+    keys:
+    - scanCode: 16
+      text:
+      - "\u0636"
+      - "\u064E"
+      - "\u0651\u064E"
+      - "\u0651\u064E"
+      dead: 00000000
+      caps: 0
+    - scanCode: 17
+      text:
+      - "\u0635"
+      - "\u064B"
+      - "\u0651\u064B"
+      - "\u0651\u064B"
+      dead: 00000000
+      caps: 0
+    - scanCode: 18
+      text:
+      - "\u062B"
+      - "\u064F"
+      - "\u0651\u064F"
+      - "\u0651\u064F"
+      dead: 00000000
+      caps: 0
+    - scanCode: 19
+      text:
+      - "\u0642"
+      - "\u064C"
+      - "\u0651\u064C"
+      - "\u0651\u064C"
+      dead: 00000000
+      caps: 0
+    - scanCode: 31
+      text:
+      - "\u0633"
+      - 
+      - "\u20C1"
+      - "\u20C1"
+      dead: 00000000
+      caps: 0
+    - scanCode: 46
+      text:
+      - "\u0624"
+      - "\u0650"
+      - "\u0651\u0650"
+      - "\u0651\u0650"
+      dead: 00000000
+      caps: 0
+    - scanCode: 47
+      text:
+      - "\u0631"
+      - "\u064D"
+      - "\u0651\u064D"
+      - "\u0651\u064D"
+      dead: 00000000
+      caps: 0
+    - scanCode: 26
+      text:
+      - "\u062C"
+      - '}'
+      - 
+      - 
+      dead: 00000000
+      caps: 0
+    - scanCode: 27
+      text:
+      - "\u062F"
+      - '{'
+      - 
+      - 
+      dead: 00000000
+      caps: 0
+    - scanCode: 43
+      text:
+      - "\u0630"
+      - "\u0651"
+      - 
+      - 
+      dead: 00000000
+      caps: 0
+    - scanCode: 40
+      text:
+      - "\u0637"
+      - '"'
+      - 
+      - 
+      dead: 00000000
+      caps: 0
+    - scanCode: 57
+      text:
+      - ' '
+      - ' '
+      - 
+      - 
+      dead: 00000000
+      caps: 0
+    - scanCode: 2
+      text:
+      - 1
+      - '!'
+      - 
+      - 
+      dead: 00000000
+      caps: 0
+    - scanCode: 3
+      text:
+      - 2
+      - '@'
+      - 
+      - 
+      dead: 00000000
+      caps: 0
+    - scanCode: 4
+      text:
+      - 3
+      - '#'
+      - 
+      - 
+      dead: 00000000
+      caps: 0
+    - scanCode: 5
+      text:
+      - 4
+      - $
+      - "\xA4"
+      - "\xA4"
+      dead: 00000000
+      caps: 0
+    - scanCode: 7
+      text:
+      - 6
+      - ^
+      - 
+      - 
+      dead: 00000000
+      caps: 0
+    - scanCode: 12
+      text:
+      - '-'
+      - _
+      - 
+      - 
+      dead: 00000000
+      caps: 0
+    - scanCode: 41
+      text:
+      - '>'
+      - <
+      - 
+      - 
+      dead: 00000000
+      caps: 0
+    - scanCode: 6
+      text:
+      - 5
+      - '%'
+      - 
+      - 
+      dead: 00000000
+      caps: 0
+    - scanCode: 8
+      text:
+      - 7
+      - '&'
+      - 
+      - 
+      dead: 00000000
+      caps: 0
+    - scanCode: 9
+      text:
+      - 8
+      - '*'
+      - 
+      - 
+      dead: 00000000
+      caps: 0
+    - scanCode: 10
+      text:
+      - 9
+      - )
+      - 
+      - 
+      dead: 00000000
+      caps: 0
+    - scanCode: 11
+      text:
+      - 0
+      - (
+      - 
+      - 
+      dead: 00000000
+      caps: 0
+    - scanCode: 13
+      text:
+      - =
+      - +
+      - 
+      - 
+      dead: 00000000
+      caps: 0
+    - scanCode: 20
+      text:
+      - "\u0641"
+      - "\u0644\u0625"
+      - 
+      - 
+      dead: 00000000
+      caps: 0
+    - scanCode: 21
+      text:
+      - "\u063A"
+      - "\u0625"
+      - 
+      - 
+      dead: 00000000
+      caps: 0
+    - scanCode: 22
+      text:
+      - "\u0639"
+      - "\u2018"
+      - 
+      - 
+      dead: 00000000
+      caps: 0
+    - scanCode: 23
+      text:
+      - "\u0647"
+      - "\xF7"
+      - 
+      - 
+      dead: 00000000
+      caps: 0
+    - scanCode: 24
+      text:
+      - "\u062E"
+      - "\xD7"
+      - 
+      - 
+      dead: 00000000
+      caps: 0
+    - scanCode: 25
+      text:
+      - "\u062D"
+      - "\u061B"
+      - 
+      - 
+      dead: 00000000
+      caps: 0
+    - scanCode: 30
+      text:
+      - "\u0634"
+      - \
+      - 
+      - 
+      dead: 00000000
+      caps: 0
+    - scanCode: 32
+      text:
+      - "\u064A"
+      - ']'
+      - 
+      - 
+      dead: 00000000
+      caps: 0
+    - scanCode: 33
+      text:
+      - "\u0628"
+      - '['
+      - 
+      - 
+      dead: 00000000
+      caps: 0
+    - scanCode: 34
+      text:
+      - "\u0644"
+      - "\u0644\u0623"
+      - 
+      - 
+      dead: 00000000
+      caps: 0
+    - scanCode: 35
+      text:
+      - "\u0627"
+      - "\u0623"
+      - 
+      - 
+      dead: 00000000
+      caps: 0
+    - scanCode: 36
+      text:
+      - "\u062A"
+      - "\u0640"
+      - 
+      - 
+      dead: 00000000
+      caps: 0
+    - scanCode: 37
+      text:
+      - "\u0646"
+      - "\u060C"
+      - 
+      - 
+      dead: 00000000
+      caps: 0
+    - scanCode: 38
+      text:
+      - "\u0645"
+      - /
+      - 
+      - 
+      dead: 00000000
+      caps: 0
+    - scanCode: 39
+      text:
+      - "\u0643"
+      - ':'
+      - 
+      - 
+      dead: 00000000
+      caps: 0
+    - scanCode: 44
+      text:
+      - "\u0626"
+      - ~
+      - 
+      - 
+      dead: 00000000
+      caps: 0
+    - scanCode: 45
+      text:
+      - "\u0621"
+      - "\u0652"
+      - 
+      - 
+      dead: 00000000
+      caps: 0
+    - scanCode: 48
+      text:
+      - "\u0644\u0627"
+      - "\u0644\u0622"
+      - 
+      - 
+      dead: 00000000
+      caps: 0
+    - scanCode: 49
+      text:
+      - "\u0649"
+      - "\u0622"
+      - 
+      - 
+      dead: 00000000
+      caps: 0
+    - scanCode: 50
+      text:
+      - "\u0629"
+      - "\u2019"
+      - 
+      - 
+      dead: 00000000
+      caps: 0
+    - scanCode: 51
+      text:
+      - "\u0648"
+      - ','
+      - 
+      - 
+      dead: 00000000
+      caps: 0
+    - scanCode: 52
+      text:
+      - "\u0632"
+      - .
+      - 
+      - 
+      dead: 00000000
+      caps: 0
+    - scanCode: 53
+      text:
+      - "\u0638"
+      - "\u061F"
+      - 
+      - 
+      dead: 00000000
+      caps: 0
+    - scanCode: 86
+      text:
+      - "\u0640"
+      - '|'
+      - 
+      - 
+      dead: 00000000
+      caps: 0
+    - scanCode: 83
+      text:
+      - .
+      - .
+      - 
+      - 
+      dead: 00000000
+      caps: 0
+    deadKeys: []

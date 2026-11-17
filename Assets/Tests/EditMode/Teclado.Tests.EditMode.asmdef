@@ -1,9 +1,24 @@
 {
   "name": "Teclado.Tests.EditMode",
-  "references": ["Teclado.Editor", "Teclado.Runtime", "RTLTMPro", "Unity.TextMeshPro", "UnityEngine.UI", "UnityEngine.TestRunner", "UnityEditor.TestRunner"],
-  "includePlatforms": ["Editor"],
+  "references": [
+    "Teclado.Editor",
+    "Teclado.Runtime",
+    "RTLTMPro",
+    "Unity.TextMeshPro",
+    "UnityEngine.UI",
+    "UnityEngine.TestRunner",
+    "UnityEditor.TestRunner",
+    "Teclado.Core"
+  ],
+  "includePlatforms": [
+    "Editor"
+  ],
   "overrideReferences": true,
-  "precompiledReferences": ["nunit.framework.dll"],
-  "defineConstraints": ["UNITY_INCLUDE_TESTS"],
+  "precompiledReferences": [
+    "nunit.framework.dll"
+  ],
+  "defineConstraints": [
+    "UNITY_INCLUDE_TESTS"
+  ],
   "autoReferenced": false
 }

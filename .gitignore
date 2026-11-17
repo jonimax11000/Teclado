@@ -46,3 +46,6 @@ sysinfo.txt
 .DS_Store
 # graphify
 graphify-out/
+
+# Ficheros .klc de Windows (derivados de Microsoft, no se commitean)
+/Klc/

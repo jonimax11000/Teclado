@@ -1,0 +1,475 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 049e770fc31d11691a66df9db501e5f2, type: 3}
+  m_Name: "\u0395\u03BB\u03BB\u03B7\u03BD\u03B9\u03BA\u03AC"
+  m_EditorClassIdentifier: Teclado.Runtime::KeyboardLayout
+  data:
+    displayName: "\u0395\u03BB\u03BB\u03B7\u03BD\u03B9\u03BA\u03AC"
+    order: 6
+    systemLanguage: Greek
+    template: 2
+    composer: 1
+    isRtl: 0
+    keys:
+    - scanCode: 4
+      text:
+      - 3
+      - '#'
+      - "\xB3"
+      - 
+      dead: 00000000
+      caps: 0
+    - scanCode: 5
+      text:
+      - 4
+      - $
+      - "\xA3"
+      - 
+      dead: 00000000
+      caps: 0
+    - scanCode: 6
+      text:
+      - 5
+      - '%'
+      - "\xA7"
+      - 
+      dead: 00000000
+      caps: 0
+    - scanCode: 9
+      text:
+      - 8
+      - '*'
+      - "\xA4"
+      - 
+      dead: 00000000
+      caps: 0
+    - scanCode: 10
+      text:
+      - 9
+      - (
+      - "\xA6"
+      - 
+      dead: 00000000
+      caps: 0
+    - scanCode: 11
+      text:
+      - 0
+      - )
+      - "\xB0"
+      - 
+      dead: 00000000
+      caps: 0
+    - scanCode: 13
+      text:
+      - =
+      - +
+      - "\xBD"
+      - 
+      dead: 00000000
+      caps: 0
+    - scanCode: 18
+      text:
+      - "\u03B5"
+      - "\u0395"
+      - "\u20AC"
+      - 
+      dead: 00000000
+      caps: 1
+    - scanCode: 19
+      text:
+      - "\u03C1"
+      - "\u03A1"
+      - "\xAE"
+      - 
+      dead: 00000000
+      caps: 1
+    - scanCode: 21
+      text:
+      - "\u03C5"
+      - "\u03A5"
+      - "\xA5"
+      - 
+      dead: 00000000
+      caps: 1
+    - scanCode: 39
+      text:
+      - "\u0384"
+      - "\xA8"
+      - "\u0385"
+      - 
+      dead: 01010100
+      caps: 0
+    - scanCode: 46
+      text:
+      - "\u03C8"
+      - "\u03A8"
+      - "\xA9"
+      - 
+      dead: 00000000
+      caps: 1
+    - scanCode: 26
+      text:
+      - '['
+      - '{'
+      - "\xAB"
+      - 
+      dead: 00000000
+      caps: 0
+    - scanCode: 27
+      text:
+      - ']'
+      - '}'
+      - "\xBB"
+      - 
+      dead: 00000000
+      caps: 0
+    - scanCode: 43
+      text:
+      - \
+      - '|'
+      - "\xAC"
+      - 
+      dead: 00000000
+      caps: 0
+    - scanCode: 40
+      text:
+      - ''''
+      - '"'
+      - 
+      - 
+      dead: 00000000
+      caps: 0
+    - scanCode: 86
+      text:
+      - <
+      - '>'
+      - 
+      - 
+      dead: 00000000
+      caps: 0
+    - scanCode: 57
+      text:
+      - ' '
+      - ' '
+      - 
+      - 
+      dead: 00000000
+      caps: 0
+    - scanCode: 41
+      text:
+      - '`'
+      - ~
+      - 
+      - 
+      dead: 00000000
+      caps: 0
+    - scanCode: 3
+      text:
+      - 2
+      - '@'
+      - "\xB2"
+      - 
+      dead: 00000000
+      caps: 0
+    - scanCode: 7
+      text:
+      - 6
+      - ^
+      - "\xB6"
+      - 
+      dead: 00000000
+      caps: 0
+    - scanCode: 12
+      text:
+      - '-'
+      - _
+      - "\xB1"
+      - 
+      dead: 00000000
+      caps: 0
+    - scanCode: 2
+      text:
+      - 1
+      - '!'
+      - 
+      - 
+      dead: 00000000
+      caps: 0
+    - scanCode: 8
+      text:
+      - 7
+      - '&'
+      - 
+      - 
+      dead: 00000000
+      caps: 0
+    - scanCode: 16
+      text:
+      - ;
+      - ':'
+      - 
+      - 
+      dead: 00000000
+      caps: 0
+    - scanCode: 17
+      text:
+      - "\u03C2"
+      - "\u0385"
+      - 
+      - 
+      dead: 00010000
+      caps: 0
+    - scanCode: 20
+      text:
+      - "\u03C4"
+      - "\u03A4"
+      - 
+      - 
+      dead: 00000000
+      caps: 1
+    - scanCode: 22
+      text:
+      - "\u03B8"
+      - "\u0398"
+      - 
+      - 
+      dead: 00000000
+      caps: 1
+    - scanCode: 23
+      text:
+      - "\u03B9"
+      - "\u0399"
+      - 
+      - 
+      dead: 00000000
+      caps: 1
+    - scanCode: 24
+      text:
+      - "\u03BF"
+      - "\u039F"
+      - 
+      - 
+      dead: 00000000
+      caps: 1
+    - scanCode: 25
+      text:
+      - "\u03C0"
+      - "\u03A0"
+      - 
+      - 
+      dead: 00000000
+      caps: 1
+    - scanCode: 30
+      text:
+      - "\u03B1"
+      - "\u0391"
+      - 
+      - 
+      dead: 00000000
+      caps: 1
+    - scanCode: 31
+      text:
+      - "\u03C3"
+      - "\u03A3"
+      - 
+      - 
+      dead: 00000000
+      caps: 1
+    - scanCode: 32
+      text:
+      - "\u03B4"
+      - "\u0394"
+      - 
+      - 
+      dead: 00000000
+      caps: 1
+    - scanCode: 33
+      text:
+      - "\u03C6"
+      - "\u03A6"
+      - 
+      - 
+      dead: 00000000
+      caps: 1
+    - scanCode: 34
+      text:
+      - "\u03B3"
+      - "\u0393"
+      - 
+      - 
+      dead: 00000000
+      caps: 1
+    - scanCode: 35
+      text:
+      - "\u03B7"
+      - "\u0397"
+      - 
+      - 
+      dead: 00000000
+      caps: 1
+    - scanCode: 36
+      text:
+      - "\u03BE"
+      - "\u039E"
+      - 
+      - 
+      dead: 00000000
+      caps: 1
+    - scanCode: 37
+      text:
+      - "\u03BA"
+      - "\u039A"
+      - 
+      - 
+      dead: 00000000
+      caps: 1
+    - scanCode: 38
+      text:
+      - "\u03BB"
+      - "\u039B"
+      - 
+      - 
+      dead: 00000000
+      caps: 1
+    - scanCode: 44
+      text:
+      - "\u03B6"
+      - "\u0396"
+      - 
+      - 
+      dead: 00000000
+      caps: 1
+    - scanCode: 45
+      text:
+      - "\u03C7"
+      - "\u03A7"
+      - 
+      - 
+      dead: 00000000
+      caps: 1
+    - scanCode: 47
+      text:
+      - "\u03C9"
+      - "\u03A9"
+      - 
+      - 
+      dead: 00000000
+      caps: 1
+    - scanCode: 48
+      text:
+      - "\u03B2"
+      - "\u0392"
+      - 
+      - 
+      dead: 00000000
+      caps: 1
+    - scanCode: 49
+      text:
+      - "\u03BD"
+      - "\u039D"
+      - 
+      - 
+      dead: 00000000
+      caps: 1
+    - scanCode: 50
+      text:
+      - "\u03BC"
+      - "\u039C"
+      - 
+      - 
+      dead: 00000000
+      caps: 1
+    - scanCode: 51
+      text:
+      - ','
+      - <
+      - 
+      - 
+      dead: 00000000
+      caps: 0
+    - scanCode: 52
+      text:
+      - .
+      - '>'
+      - 
+      - 
+      dead: 00000000
+      caps: 0
+    - scanCode: 53
+      text:
+      - /
+      - '?'
+      - 
+      - 
+      dead: 00000000
+      caps: 0
+    - scanCode: 83
+      text:
+      - ','
+      - ','
+      - 
+      - 
+      dead: 00000000
+      caps: 0
+    deadKeys:
+    - deadChar: "\u0385"
+      entries:
+      - from: "\u03B9"
+        to: "\u0390"
+      - from: "\u03C5"
+        to: "\u03B0"
+      - from: ' '
+        to: "\u0385"
+    - deadChar: "\u0384"
+      entries:
+      - from: "\u03B1"
+        to: "\u03AC"
+      - from: "\u03B5"
+        to: "\u03AD"
+      - from: "\u03B9"
+        to: "\u03AF"
+      - from: "\u03BF"
+        to: "\u03CC"
+      - from: "\u03C5"
+        to: "\u03CD"
+      - from: "\u03C9"
+        to: "\u03CE"
+      - from: "\u03B7"
+        to: "\u03AE"
+      - from: "\u0391"
+        to: "\u0386"
+      - from: "\u0395"
+        to: "\u0388"
+      - from: "\u0399"
+        to: "\u038A"
+      - from: "\u039F"
+        to: "\u038C"
+      - from: "\u03A5"
+        to: "\u038E"
+      - from: "\u03A9"
+        to: "\u038F"
+      - from: "\u0397"
+        to: "\u0389"
+      - from: ' '
+        to: "\u0384"
+    - deadChar: "\xA8"
+      entries:
+      - from: "\u03B9"
+        to: "\u03CA"
+      - from: "\u03C5"
+        to: "\u03CB"
+      - from: "\u0399"
+        to: "\u03AA"
+      - from: "\u03A5"
+        to: "\u03AB"
+      - from: ' '
+        to: "\xA8"
