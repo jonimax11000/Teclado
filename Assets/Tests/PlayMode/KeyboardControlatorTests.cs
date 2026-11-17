@@ -97,4 +97,52 @@ public class KeyboardControlatorTests
         C.LeftPressed();
         Assert.GreaterOrEqual(n, 2);
     }
+
+    // Revisión final #1
+    [Test] public void InsertarAntesDeAlef_NoQuedaDentroDeLigadura()
+    {
+        rig.Type("س", "ا", "م");
+        C.SetCaret(1);
+        C.InsertChar("ل");
+        Assert.AreEqual("سلام", Text);
+        Assert.AreEqual(3, C.Caret);
+        C.InsertChar("ي");
+        Assert.AreEqual("سلايم", Text);
+    }
+
+    [Test] public void BorrarFormaLigadura_CursorFuera()
+    {
+        rig.Type("ل", "ب", "ا");
+        C.SetCaret(2);
+        C.DeleteChar();
+        Assert.AreEqual("لا", Text);
+        Assert.AreEqual(2, C.Caret);
+    }
+
+    // Revisión final #3
+    [Test] public void SetTextWithoutNotify_NoRompe()
+    {
+        rig.Type("a", "b", "c");
+        rig.Field.SetTextWithoutNotify("");
+        Assert.DoesNotThrow(() => C.DeleteChar());
+        Assert.DoesNotThrow(() => C.LeftPressed());
+        C.InsertChar("x");
+        Assert.AreEqual("x", Text);
+        rig.Type("y", "z");
+        rig.Field.SetTextWithoutNotify("س");
+        rig.Rtl.ForceMeshUpdate();
+        Assert.DoesNotThrow(() => CaretMapper.CaretX(rig.Rtl, "س", 3, false));
+    }
+
+    // Revisión final #6: las flechas siguen la posición visual también dentro de números
+    [Test] public void Digitos_FlechasVisuales()
+    {
+        rig.Type("س", "1", "2");             // visual: 1 2 س
+        Assert.AreEqual(3, C.Caret);         // extremo izquierdo
+        C.RightPressed(); Assert.AreEqual(2, C.Caret);   // entre 1 y 2
+        C.RightPressed(); Assert.AreEqual(1, C.Caret);   // entre 2 y س
+        C.RightPressed(); Assert.AreEqual(0, C.Caret);   // extremo derecho
+        C.LeftPressed(); Assert.AreEqual(1, C.Caret);
+        C.LeftPressed(); Assert.AreEqual(2, C.Caret);
+    }
 }

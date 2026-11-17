@@ -75,4 +75,13 @@ public class FieldPointerTests
         pointer.OnPointerClick(data);
         Assert.AreEqual(0, rig.Controlator.Caret);
     }
+
+    // Revisión final #6
+    [Test] public void TocarEntreDigitos()
+    {
+        rig.Type("س", "1", "2", "3");
+        var g = Glyphs();                     // izq→der: 1 2 3 س
+        float between = (g[0].topRight.x + g[1].bottomLeft.x) / 2;
+        Assert.AreEqual(2, At(between));
+    }
 }

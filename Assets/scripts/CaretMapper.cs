@@ -32,7 +32,7 @@ public static class CaretMapper
 
         // RTL: los glifos a la derecha del cursor son los que produce el prefijo lógico.
         chars.Sort((a, b) => Right(b).CompareTo(Right(a)));
-        int k = ShownLength(shown, logical.Substring(0, caret));
+        int k = GlyphsRightOf(shown, logical, System.Math.Min(System.Math.Max(caret, 0), logical.Length));
         return k == 0 ? Right(chars[0]) : Left(chars[System.Math.Min(k, chars.Count) - 1]);
     }
 
@@ -51,18 +51,34 @@ public static class CaretMapper
             return logical.Length;
         }
 
-        // RTL: cuántos glifos quedan a la derecha del punto, y el primer prefijo lógico que los produce.
+        // RTL: cuántos glifos quedan a la derecha del punto, y la posición lógica que deja ese número a su derecha.
         int right = 0;
         foreach (var c in chars) if (Center(c) > localPoint.x) right++;
+        int best = 0, bestDiff = int.MaxValue;
         for (int i = 0; i <= logical.Length; i++)
         {
             if (IsInsideLigature(logical, i)) continue;
-            if (ShownLength(shown, logical.Substring(0, i)) >= right) return i;
+            int diff = System.Math.Abs(GlyphsRightOf(shown, logical, i) - right);
+            if (diff < bestDiff) { best = i; bestDiff = diff; }
         }
-        return logical.Length;
+        return best;
     }
 
     static float Center(TMP_CharacterInfo c) => (c.bottomLeft.x + c.topRight.x) / 2;
+
+    // Glifos a la derecha del cursor lógico i en un párrafo RTL. Los tramos de dígitos y
+    // letras latinas se dibujan en orden de lectura (izq→der), no invertidos.
+    public static int GlyphsRightOf(TMP_Text shown, string logical, int i)
+    {
+        bool insideLtrRun = i > 0 && i < logical.Length && IsLtr(logical[i - 1]) && IsLtr(logical[i]);
+        if (!insideLtrRun) return ShownLength(shown, logical.Substring(0, i));
+        int start = i, end = i;
+        while (start > 0 && IsLtr(logical[start - 1])) start--;
+        while (end < logical.Length && IsLtr(logical[end])) end++;
+        return ShownLength(shown, logical.Substring(0, start)) + (end - i);
+    }
+
+    static bool IsLtr(char c) => char.IsDigit(c) || TextUtils.IsEnglishLetter(c);
 
     static List<TMP_CharacterInfo> Chars(TMP_Text shown)
     {

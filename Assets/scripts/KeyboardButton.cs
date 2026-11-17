@@ -20,6 +20,7 @@ public class KeyboardButton : MonoBehaviour
 
 
     private TextMeshProUGUI text;
+    private string currentForm = "";
     // Start is called before the first frame update
     void Start()
     {
@@ -71,11 +72,11 @@ public class KeyboardButton : MonoBehaviour
                 case(Keyboard.KeyboardType.Arabic):
                     if (buttonVR is not null)
                     {
-                        buttonVR.onRelease.AddListener(delegate { keyboard.insertChar(text.text); });
+                        buttonVR.onRelease.AddListener(delegate { keyboard.insertChar(currentForm); });
                     }
                     if (canvasButton is not null)
                     {
-                        canvasButton.onRelease.AddListener(delegate { keyboard.insertChar(text.text); });
+                        canvasButton.onRelease.AddListener(delegate { keyboard.insertChar(currentForm); });
                     }
                     break;
                 default:
@@ -178,6 +179,15 @@ public class KeyboardButton : MonoBehaviour
                     text.text = alterForm;
                 }
             }
+        }
+
+        // Árabe: la etiqueta se dibuja unida (ﻻ) y se inserta el texto lógico (لا).
+        if (text == null) return;
+        currentForm = text.text;
+        if (keyboard._Keyboardtype == Keyboard.KeyboardType.Arabic && !special_letter)
+        {
+            text.isRightToLeftText = RtlShaper.NeedsShaping(currentForm);
+            text.text = RtlShaper.Shape(currentForm);
         }
     }
     

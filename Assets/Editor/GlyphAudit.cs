@@ -14,6 +14,8 @@ public static class GlyphAudit
     [MenuItem("Teclado/Auditar glifos")]
     public static void Run()
     {
+        // Abrir la escena descarta cambios sin guardar: preguntar antes (en batchmode no pregunta).
+        if (!EditorSceneManager.SaveCurrentModifiedScenesIfUserWantsTo()) return;
         EditorSceneManager.OpenScene("Assets/Scenes/Pruebas VR.unity");
         var global = TMP_Settings.fallbackFontAssets ?? new List<TMP_FontAsset>();
         var fieldFont = Object.FindAnyObjectByType<KeyboardControlator>(FindObjectsInactive.Include).field.textComponent.font;

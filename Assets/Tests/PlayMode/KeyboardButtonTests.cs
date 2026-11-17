@@ -67,4 +67,14 @@ public class KeyboardButtonTests
         yield return Key(Keyboard.KeyboardType.Default, new[] { "a" }, new[] { "A" }, "a", false, "a", (kb, b) => b.onRelease.Invoke());
         Assert.AreEqual("a", rig.Field.text);
     }
+
+    // Revisión final #4: la etiqueta se muestra unida (ﻻ), pero se inserta el texto lógico
+    [UnityTest] public IEnumerator Arabe_EtiquetaLamAlef_Unida()
+    {
+        TextMeshProUGUI label = null;
+        yield return Key(Keyboard.KeyboardType.Arabic, new[] { "لا" }, new[] { "لآ" }, "", false, "لا",
+            (kb, b) => { label = b.GetComponent<TextMeshProUGUI>(); b.onRelease.Invoke(); });
+        Assert.IsTrue(label.text.IndexOf('\uFEFB') >= 0, "comparación ordinal: la cultural iguala ﻻ y لا");
+        Assert.AreEqual("لا", rig.Field.text);
+    }
 }

@@ -75,9 +75,9 @@ public class KeyboardControlator : MonoBehaviour
 
     public void InsertChar(string c)
     {
-        int at = Caret;
+        int at = ClampedCaret();
         SetText(field.text.Insert(at, c));
-        Caret = at + c.Length;
+        Caret = OutOfLigature(at + c.Length);
         CaretChanged?.Invoke();
     }
 
@@ -98,10 +98,10 @@ public class KeyboardControlator : MonoBehaviour
 
     public void DeleteChar()
     {
-        if (Caret == 0) return;
-        int at = Caret - 1;
+        int at = ClampedCaret() - 1;
+        if (at < 0) return;
         SetText(field.text.Remove(at, 1));
-        Caret = at;
+        Caret = OutOfLigature(at);
         CaretChanged?.Invoke();
     }
 
@@ -118,11 +118,16 @@ public class KeyboardControlator : MonoBehaviour
 
     private void Move(int step)
     {
-        int c = Mathf.Clamp(Caret + step, 0, field.text.Length);
+        int c = Mathf.Clamp(ClampedCaret() + step, 0, field.text.Length);
         if (CaretMapper.IsInsideLigature(field.text, c)) c = Mathf.Clamp(c + step, 0, field.text.Length);
         Caret = c;
         CaretChanged?.Invoke();
     }
+
+    // El texto puede haber cambiado sin avisar (SetTextWithoutNotify, field reasignado...).
+    private int ClampedCaret() => Mathf.Min(Caret, field.text.Length);
+
+    private int OutOfLigature(int c) => CaretMapper.IsInsideLigature(field.text, c) ? c + 1 : c;
 
     private void SetText(string text)
     {

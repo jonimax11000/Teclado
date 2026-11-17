@@ -93,4 +93,30 @@ public class CaretViewTests
         Assert.AreEqual(expected, view.caret.position.x, 0.5f);
         Assert.AreEqual(0f, rig.Field.caretColor.a, "el cursor de TMP_InputField debe quedar oculto");
     }
+
+    TMP_CharacterInfo Glyph(System.Func<char, bool> pred) => Visible().First(c => pred(c.character));
+
+    // Revisión final #2
+    [Test] public void Tashkeel_CursorNoQuedaDentroDeLaLetra()
+    {
+        rig.Type("س", "\u064E", "م");       // سَم
+        var g = Visible();
+        var seen = Glyph(c => c >= '\uFEB1' && c <= '\uFEB4');
+        var meem = Glyph(c => c >= '\uFEE1' && c <= '\uFEE4');
+        Assert.LessOrEqual(X(3), g.Min(c => c.bottomLeft.x) + Tol, "al final: a la izquierda de todo");
+        float x2 = X(2);                      // tras la fatha, antes de م
+        Assert.GreaterOrEqual(x2, meem.topRight.x - Tol);
+        Assert.LessOrEqual(x2, seen.bottomLeft.x + Tol, "no dentro de س");
+    }
+
+    // Revisión final #6
+    [Test] public void Digitos_CursorEntreCifras()
+    {
+        rig.Type("س", "1", "2", "3");         // visual: 1 2 3 س
+        var one = Glyph(c => c == '1');
+        var two = Glyph(c => c == '2');
+        float x = X(2);                       // tras "1"
+        Assert.GreaterOrEqual(x, one.topRight.x - Tol);
+        Assert.LessOrEqual(x, two.bottomLeft.x + Tol);
+    }
 }

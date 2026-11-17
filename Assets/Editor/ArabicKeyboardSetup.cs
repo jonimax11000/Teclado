@@ -29,6 +29,8 @@ public static class ArabicKeyboardSetup
     [MenuItem("Teclado/Configurar teclado árabe")]
     public static void Run()
     {
+        // Abrir la escena descarta cambios sin guardar: preguntar antes (en batchmode no pregunta).
+        if (!EditorSceneManager.SaveCurrentModifiedScenesIfUserWantsTo()) return;
         var scene = EditorSceneManager.OpenScene(ScenePath);
         Apply(scene);
         EditorSceneManager.SaveScene(scene);
