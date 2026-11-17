@@ -66,14 +66,14 @@ public class FieldPointerTests
     [UnityTest] public IEnumerator OnPointerClick_MueveElCursor()
     {
         var pointer = rig.Field.gameObject.AddComponent<FieldPointer>();
-        pointer.controlator = rig.Controlator;
+        pointer.input = rig.Input;
         rig.Type("a", "b", "c");
         yield return null;
         var first = Glyphs()[0];
         Vector3 world = rig.Rtl.rectTransform.TransformPoint(new Vector3(first.bottomLeft.x + 1, (first.bottomLeft.y + first.topRight.y) / 2, 0));
         var data = new PointerEventData(null) { position = world };   // canvas overlay: mundo == pantalla
         pointer.OnPointerClick(data);
-        Assert.AreEqual(0, rig.Controlator.Caret);
+        Assert.AreEqual(0, rig.Controller.Caret);
     }
 
     // Revisión final #6
