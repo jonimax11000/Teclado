@@ -1,7 +1,6 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using Newtonsoft.Json;
 using TMPro;
 using UnityEngine;
 
@@ -11,7 +10,6 @@ public class KeyboardButton : MonoBehaviour
     public Boolean special_letter = false;
     public Boolean not_vowel = true;
     public Boolean not_Syllable_letter_for_Korean;
-    public Dictionary<string, letterData> letterDatabase;
     
     public string[] normalForms;
     
@@ -30,44 +28,8 @@ public class KeyboardButton : MonoBehaviour
         keyboard = GetComponentInParent<Keyboard>();
         GetComponentInParent<KeyboardControlator>();
         text = GetComponentInChildren<TextMeshProUGUI>();
-        if (Keyboard.KeyboardType.Korean == keyboard._Keyboardtype)
-        {
-            TextAsset jsonTextAsset = Resources.Load<TextAsset>("Arabic");
-            // Convertir el JSON en un objeto LettersDatabase
-            letterDatabase = JsonConvert.DeserializeObject<Dictionary<string, letterData>>(jsonTextAsset.text);
-            if (jsonTextAsset != null)
-            {
-                // Deserializar el JSON
-                letterDatabase = JsonConvert.DeserializeObject<Dictionary<string, letterData>>(jsonTextAsset.text);
-
-                // Obtener el nombre del GameObject
-                string key = gameObject.name;
-
-                // Comprobar si el nombre del GameObject existe en las teclas del JSON
-                if (letterDatabase.ContainsKey(key))
-                {
-                    letterData tecla = letterDatabase[key];
-
-                    // Asignar todas las formas a normalForms
-                    normalForms = new string[5];
-                    normalForms[0] = key;
-                    normalForms[1] = tecla.formas.aislada; // Forma aislada
-                    normalForms[2] = tecla.formas.inicial; // Forma inicial
-                    normalForms[3] = tecla.formas.medial; // Forma medial
-                    normalForms[4] = tecla.formas.final; // Forma final
-
-                    // Asignar las formas con Shift a CapForms
-                    CapForms = new string[1];
-                    CapForms[0] = tecla.tecla_con_shift; // Forma con Shift
-
-                    // Asignar la forma con AltGr a alterForm
-                    alterForm = tecla.tecla_con_altgr; // Forma con AltGr
-
-                }
-            }
-        }
-
-        if (text !=null && text.text.Length == 1)
+        // Teclas como لا insertan dos caracteres: se conectan aunque la etiqueta no mida 1.
+        if (text != null && (text.text.Length == 1 || (!special_letter && normalForms.Length > 0 && normalForms[0].Length > 1)))
         {
             Change();
             switch (keyboard._Keyboardtype)
@@ -109,20 +71,11 @@ public class KeyboardButton : MonoBehaviour
                 case(Keyboard.KeyboardType.Arabic):
                     if (buttonVR is not null)
                     {
-                        buttonVR.onRelease.AddListener(delegate
-                        {
-                            keyboard.Korean_Syllable_Formation(text.text, not_vowel,
-                                not_Syllable_letter_for_Korean);
-                        });
+                        buttonVR.onRelease.AddListener(delegate { keyboard.insertChar(text.text); });
                     }
-
                     if (canvasButton is not null)
                     {
-                        canvasButton.onRelease.AddListener(delegate
-                        {
-                            keyboard.Korean_Syllable_Formation(text.text, not_vowel,
-                                not_Syllable_letter_for_Korean);
-                        });
+                        canvasButton.onRelease.AddListener(delegate { keyboard.insertChar(text.text); });
                     }
                     break;
                 default:
@@ -229,23 +182,3 @@ public class KeyboardButton : MonoBehaviour
     }
     
 }
-
-// Clase que representa los datos de una tecla
-[System.Serializable]
-public class letterData
-{
-    public string tecla_sin_shift;     // Forma sin Shift (normal)
-    public string tecla_con_shift;    // Forma con Shift
-    public string tecla_con_altgr;    // Forma con AltGr
-    public Forms formas;             // Objeto con las diferentes formas
-}
-
-[System.Serializable]
-public class Forms
-{
-    public string aislada;            // Forma aislada
-    public string inicial;            // Forma inicial
-    public string medial;             // Forma medial
-    public string final;              // Forma final
-}
-
