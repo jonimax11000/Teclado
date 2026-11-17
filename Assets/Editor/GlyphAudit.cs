@@ -8,14 +8,14 @@ using UnityEngine;
 
 public static class GlyphAudit
 {
+    static bool Covered(TMP_FontAsset f, List<TMP_FontAsset> global, char ch) =>
+        f.HasCharacter(ch, true, true) || global.Any(g => g != null && g.HasCharacter(ch, true, true));
+
     [MenuItem("Teclado/Auditar glifos")]
     public static void Run()
     {
         EditorSceneManager.OpenScene("Assets/Scenes/Pruebas VR.unity");
         var global = TMP_Settings.fallbackFontAssets ?? new List<TMP_FontAsset>();
-        // Solo en memoria: separa «atlas lleno» de «la fuente no tiene el glifo».
-        foreach (var fa in Resources.FindObjectsOfTypeAll<TMP_FontAsset>())
-            if (fa.atlasPopulationMode == AtlasPopulationMode.Dynamic) fa.isMultiAtlasTexturesEnabled = true;
         var fieldFont = Object.FindAnyObjectByType<KeyboardControlator>(FindObjectsInactive.Include).field.textComponent.font;
         foreach (var kb in Object.FindObjectsByType<Keyboard>(FindObjectsInactive.Include, FindObjectsSortMode.None))
         {
@@ -34,12 +34,24 @@ public static class GlyphAudit
                 {
                     if (char.IsWhiteSpace(ch)) continue;
                     fonts.Add(label.font.name + (label.font.atlasPopulationMode == AtlasPopulationMode.Dynamic ? "(din)" : "(est)"));
-                    if (!fieldFont.HasCharacter(ch, true, true) && !global.Any(f => f != null && f.HasCharacter(ch, true, true))) fieldMissing.Add($"{ch}");
+                    if (!Covered(fieldFont, global, ch) && !global.Any(f => f != null && f.HasCharacter(ch, true, true))) fieldMissing.Add($"{ch}");
                     if (label.font.HasCharacter(ch, true, true)) continue;
                     if (global.Any(f => f != null && f.HasCharacter(ch, true, true))) continue;
                     missing.Add($"{ch}(U+{(int)ch:X4})");
                 }
             }
+            // Árabe: el campo dibuja formas contextuales (inicial/medial/final, ligaduras), no las letras base.
+            if (kb._Keyboardtype == Keyboard.KeyboardType.Arabic)
+                foreach (var b in kb.GetComponentsInChildren<KeyboardButton>(true))
+                foreach (var s in (b.normalForms ?? new string[0]).Concat(b.CapForms ?? new string[0]).Append(b.alterForm ?? ""))
+                foreach (var v in new[] { s, "ب" + s, s + "ب", "ب" + s + "ب" })
+                {
+                    if (string.IsNullOrWhiteSpace(s)) continue;
+                    var shaped = new RTLTMPro.FastStringBuilder(64);
+                    RTLTMPro.RTLSupport.FixRTL(v, shaped, false, true, true);
+                    foreach (char ch in shaped.ToString())
+                        if (!char.IsWhiteSpace(ch) && ch != '\u200B' && !Covered(fieldFont, global, ch)) fieldMissing.Add($"{ch}(U+{(int)ch:X4})");
+                }
             string root = kb.transform.parent ? kb.transform.parent.name + "/" + kb.name : kb.name;
             Debug.Log($"[Audit] {root} type={kb._Keyboardtype} teclas={keys} fuentes={string.Join(",", fonts)}\n   etiquetas faltan={missing.Count(m => !m.StartsWith("<"))}: {string.Join(" ", missing.Where(m => !m.StartsWith("<")).Take(40))}\n   CAMPO faltan={fieldMissing.Count}: {string.Join("", fieldMissing.Take(80))}");
         }
