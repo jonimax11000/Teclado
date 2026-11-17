@@ -37,6 +37,7 @@ namespace Teclado.Core
         {
             { ComposerKind.Direct, _ => new DirectComposer() },
             { ComposerKind.DeadKey, l => new DeadKeyComposer(l) },
+            { ComposerKind.Hangul, _ => new HangulComposer() },
         };
 
         public static void Register(ComposerKind kind, Func<LayoutData, IComposer> create) => creators[kind] = create;
