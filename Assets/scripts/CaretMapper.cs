@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using RTLTMPro;
 using TMPro;
+using UnityEngine;
 
 // Traduce entre el texto lógico (field.text) y los glifos que dibuja RTLTextMeshPro,
 // que van invertidos y con la ligadura لا ocupando un glifo para dos letras.
@@ -34,6 +35,34 @@ public static class CaretMapper
         int k = ShownLength(shown, logical.Substring(0, caret));
         return k == 0 ? Right(chars[0]) : Left(chars[System.Math.Min(k, chars.Count) - 1]);
     }
+
+    // Índice lógico para un punto en espacio local de shown.rectTransform. Nunca cae dentro de una ligadura.
+    public static int LogicalIndexAt(TMP_Text shown, string logical, Vector3 localPoint, bool rtlWhenEmpty)
+    {
+        if (string.IsNullOrEmpty(logical)) return 0;
+        var chars = Chars(shown);
+        if (chars.Count == 0) return 0;
+
+        if (!TextUtils.IsRTLInput(logical))
+        {
+            int n = System.Math.Min(chars.Count, logical.Length);
+            for (int i = 0; i < n; i++)
+                if (localPoint.x < Center(chars[i])) return i;
+            return logical.Length;
+        }
+
+        // RTL: cuántos glifos quedan a la derecha del punto, y el primer prefijo lógico que los produce.
+        int right = 0;
+        foreach (var c in chars) if (Center(c) > localPoint.x) right++;
+        for (int i = 0; i <= logical.Length; i++)
+        {
+            if (IsInsideLigature(logical, i)) continue;
+            if (ShownLength(shown, logical.Substring(0, i)) >= right) return i;
+        }
+        return logical.Length;
+    }
+
+    static float Center(TMP_CharacterInfo c) => (c.bottomLeft.x + c.topRight.x) / 2;
 
     static List<TMP_CharacterInfo> Chars(TMP_Text shown)
     {
