@@ -44,3 +44,5 @@ sysinfo.txt
 .DS_Store
 .npmrc
 .DS_Store
+# graphify
+graphify-out/
