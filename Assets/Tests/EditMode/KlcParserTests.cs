@@ -80,4 +80,12 @@ public class KlcParserTests
         KlcParser.Parse(text, into);
         Assert.AreEqual(1, into.keys.Count);
     }
+
+    // U+20C1 (riyal saudí, Unicode 17): el runtime no lo reconoce y ninguna fuente lo dibuja.
+    [Test] public void NoAsignado_Ignorado()
+    {
+        var k = Parse("1f\tS\t\t1\ts\tS\t20c1\t-1\t-1").Find(0x1F);
+        Assert.AreEqual("", k.text[(int)Layer.AltGr]);
+        Assert.AreEqual("s", k.text[0]);
+    }
 }

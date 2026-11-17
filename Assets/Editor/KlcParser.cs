@@ -98,7 +98,12 @@ public static class KlcParser
     {
         if (token == "-1") return "";
         if (token.Length >= 4 && int.TryParse(token, NumberStyles.HexNumber, null, out int cp))
-            return cp < 0x20 ? "" : char.ConvertFromUtf32(cp);
+        {
+            if (cp < 0x20) return "";
+            string s = char.ConvertFromUtf32(cp);
+            // Caracteres más nuevos que el Unicode del runtime (p. ej. U+20C1): no se pueden dibujar ni procesar.
+            return CharUnicodeInfo.GetUnicodeCategory(s, 0) == UnicodeCategory.OtherNotAssigned ? "" : s;
+        }
         return token.Length == 1 && token[0] < 0x20 ? "" : token;
     }
 }

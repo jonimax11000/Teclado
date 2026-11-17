@@ -56,8 +56,8 @@ MonoBehaviour:
       text:
       - "\u0633"
       - 
-      - "\u20C1"
-      - "\u20C1"
+      - 
+      - 
       dead: 00000000
       caps: 0
     - scanCode: 46
