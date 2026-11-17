@@ -1,5 +1,5 @@
 {
   "name": "Teclado.Runtime",
-  "references": ["Unity.TextMeshPro", "UnityEngine.UI", "RTLTMPro"],
+  "references": ["Unity.TextMeshPro", "UnityEngine.UI", "RTLTMPro", "Teclado.Core"],
   "autoReferenced": true
 }

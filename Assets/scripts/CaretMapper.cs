@@ -10,12 +10,7 @@ public static class CaretMapper
     static readonly FastStringBuilder Shaped = new FastStringBuilder(RTLSupport.DefaultBufferSize);
 
     // La ligadura lam-alef se dibuja como un solo glifo: el cursor nunca puede quedar entre ambas letras.
-    public static bool IsInsideLigature(string logical, int index)
-    {
-        if (index <= 0 || index >= logical.Length || logical[index - 1] != 'ل') return false;
-        char next = logical[index];
-        return next == 'ا' || next == 'أ' || next == 'إ' || next == 'آ';
-    }
+    public static bool IsInsideLigature(string logical, int index) => Teclado.Core.Ligatures.IsInside(logical, index);
 
     // x del cursor en espacio local de shown.rectTransform.
     public static float CaretX(TMP_Text shown, string logical, int caret, bool rtlWhenEmpty)
