@@ -1,0 +1,8 @@
+{
+  "name": "Teclado.Tests.PlayMode",
+  "references": ["Teclado.Runtime", "RTLTMPro", "Unity.TextMeshPro", "UnityEngine.UI", "UnityEngine.TestRunner"],
+  "overrideReferences": true,
+  "precompiledReferences": ["nunit.framework.dll"],
+  "defineConstraints": ["UNITY_INCLUDE_TESTS"],
+  "autoReferenced": false
+}
