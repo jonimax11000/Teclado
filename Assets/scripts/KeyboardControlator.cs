@@ -10,7 +10,6 @@ public class KeyboardControlator : MonoBehaviour
     public TMP_InputField field;
     public GameObject RigidKeyboards;
     public GameObject CanvasKeyboards;
-    private int caretpositon;
     public float blinkSpeed = 0.05f;
 
     [SerializeField] private GameObject[] RigidBodies_Keyboards;
@@ -25,8 +24,19 @@ public class KeyboardControlator : MonoBehaviour
         "Korean","Greece","Arabic"
     };
     
+    // Cursor lógico propio: TMP_InputField recorta caretPosition según los glifos
+    // mostrados, y con RTL (ligadura لا = 2 letras, 1 glifo) eso corrompe el texto.
+    public int Caret { get; private set; }
+    public bool ActiveKeyboardIsRtl { get; private set; }
+    public event Action CaretChanged;
+
+    private bool _writing;
+
     private void Start()
     {
+        if (field != null) field.onValueChanged.AddListener(OnFieldChanged);
+        if (Languaje_selector_Dropdown == null) return;
+
         _languaje_selector = Languaje_selector_Dropdown.GetComponent<TMP_Dropdown>();
         string language = Application.systemLanguage.ToString();
         if (validate_languajes.Contains(language))
@@ -37,9 +47,7 @@ public class KeyboardControlator : MonoBehaviour
         {
             _languaje_selector.value = 0;
         }
-        //ChangeLanguage(_languaje_selector.value);
-        ChangeLanguage(7);
-        //StartCoroutine("Line");
+        ChangeLanguage(_languaje_selector.value);
     }
 
     public void ChangeLanguage(int index)
@@ -51,45 +59,84 @@ public class KeyboardControlator : MonoBehaviour
         }
         RigidBodies_Keyboards[index].SetActive(true);
         Canvas_Keyboards[index].SetActive(true);
+
+        var kb = RigidBodies_Keyboards[index].GetComponent<Keyboard>();
+        ActiveKeyboardIsRtl = kb != null && kb._Keyboardtype == Keyboard.KeyboardType.Arabic;
+        CaretChanged?.Invoke();
+    }
+
+    public void SetCaret(int logicalIndex)
+    {
+        int c = Mathf.Clamp(logicalIndex, 0, field.text.Length);
+        if (CaretMapper.IsInsideLigature(field.text, c)) c++;
+        Caret = c;
+        CaretChanged?.Invoke();
     }
 
     public void InsertChar(string c)
     {
-        caretpositon = field.caretPosition;
-        field.text =field.text.Insert(caretpositon,c);
-        caretpositon += c.Length;
-        field.caretPosition = caretpositon;
+        int at = Caret;
+        SetText(field.text.Insert(at, c));
+        Caret = at + c.Length;
+        CaretChanged?.Invoke();
     }
 
     public void IsertLinerBreak()
     {
         InsertChar("\n");
     }
-    
+
     public void InsertWord(string c)
     {
-        caretpositon = field.caretPosition;
-        field.text = field.text = field.text.Insert(caretpositon,c);
-        caretpositon += c.Length;
-        field.caretPosition = caretpositon;
+        InsertChar(c);
     }
-    
+
     public void InsertSpace()
     {
-        caretpositon = field.caretPosition;
-        field.text = field.text.Insert(caretpositon++," ");
-        field.caretPosition = caretpositon;
+        InsertChar(" ");
     }
-    
+
     public void DeleteChar()
     {
-        caretpositon = field.caretPosition;
-        if (caretpositon > 0)
-        {
-            --caretpositon;
-            field.text = field.text.Remove(caretpositon, 1);
-            field.caretPosition = caretpositon;
-        }
+        if (Caret == 0) return;
+        int at = Caret - 1;
+        SetText(field.text.Remove(at, 1));
+        Caret = at;
+        CaretChanged?.Invoke();
+    }
+
+    // Las flechas siguen la dirección visual: en un párrafo RTL, ◀ avanza en el texto lógico.
+    public void LeftPressed()
+    {
+        Move(RTLTMPro.TextUtils.IsRTLInput(field.text) ? 1 : -1);
+    }
+
+    public void RightPressed()
+    {
+        Move(RTLTMPro.TextUtils.IsRTLInput(field.text) ? -1 : 1);
+    }
+
+    private void Move(int step)
+    {
+        int c = Mathf.Clamp(Caret + step, 0, field.text.Length);
+        if (CaretMapper.IsInsideLigature(field.text, c)) c = Mathf.Clamp(c + step, 0, field.text.Length);
+        Caret = c;
+        CaretChanged?.Invoke();
+    }
+
+    private void SetText(string text)
+    {
+        _writing = true;
+        field.text = text;
+        _writing = false;
+    }
+
+    // Texto cambiado desde fuera del teclado (el integrador lo vacía, lo rellena...).
+    private void OnFieldChanged(string text)
+    {
+        if (_writing) return;
+        Caret = text.Length;
+        CaretChanged?.Invoke();
     }
 
     public void ChangeToCanvas()
@@ -108,26 +155,6 @@ public class KeyboardControlator : MonoBehaviour
     {
         yield return new WaitForSeconds(1);
         g.SetActive(true);
-    }
-    
-    public void LeftPressed()
-    {
-        int caret = field.caretPosition;
-        if (caret > 0)
-        {
-            --caret;
-            field.caretPosition = caret;
-        }
-    }
-    
-    public void RightPressed()
-    {
-        int caret = field.caretPosition;
-        if (caret < field.text.Length)
-        {
-            ++caret;
-            field.caretPosition = caret;
-        }
     }
     
     IEnumerator Line()
