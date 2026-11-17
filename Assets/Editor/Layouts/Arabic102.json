@@ -1,0 +1,265 @@
+{
+ "source": "Windows Arabic (102), KBDA2 KLC (kbdlayout.info)",
+ "rows": [
+  {
+   "name": "Numbers",
+   "keys": [
+    {
+     "base": ">",
+     "shift": "<",
+     "altgr": ""
+    },
+    {
+     "base": "1",
+     "shift": "!",
+     "altgr": ""
+    },
+    {
+     "base": "2",
+     "shift": "@",
+     "altgr": ""
+    },
+    {
+     "base": "3",
+     "shift": "#",
+     "altgr": ""
+    },
+    {
+     "base": "4",
+     "shift": "$",
+     "altgr": "¤"
+    },
+    {
+     "base": "5",
+     "shift": "%",
+     "altgr": ""
+    },
+    {
+     "base": "6",
+     "shift": "^",
+     "altgr": ""
+    },
+    {
+     "base": "7",
+     "shift": "&",
+     "altgr": ""
+    },
+    {
+     "base": "8",
+     "shift": "*",
+     "altgr": ""
+    },
+    {
+     "base": "9",
+     "shift": ")",
+     "altgr": ""
+    },
+    {
+     "base": "0",
+     "shift": "(",
+     "altgr": ""
+    },
+    {
+     "base": "-",
+     "shift": "_",
+     "altgr": ""
+    },
+    {
+     "base": "=",
+     "shift": "+",
+     "altgr": ""
+    }
+   ]
+  },
+  {
+   "name": "Row 1",
+   "keys": [
+    {
+     "base": "ض",
+     "shift": "َ",
+     "altgr": "َّ"
+    },
+    {
+     "base": "ص",
+     "shift": "ً",
+     "altgr": "ًّ"
+    },
+    {
+     "base": "ث",
+     "shift": "ُ",
+     "altgr": "ُّ"
+    },
+    {
+     "base": "ق",
+     "shift": "ٌ",
+     "altgr": "ٌّ"
+    },
+    {
+     "base": "ف",
+     "shift": "لإ",
+     "altgr": ""
+    },
+    {
+     "base": "غ",
+     "shift": "إ",
+     "altgr": ""
+    },
+    {
+     "base": "ع",
+     "shift": "‘",
+     "altgr": ""
+    },
+    {
+     "base": "ه",
+     "shift": "÷",
+     "altgr": ""
+    },
+    {
+     "base": "خ",
+     "shift": "×",
+     "altgr": ""
+    },
+    {
+     "base": "ح",
+     "shift": "؛",
+     "altgr": ""
+    },
+    {
+     "base": "ج",
+     "shift": "}",
+     "altgr": ""
+    },
+    {
+     "base": "د",
+     "shift": "{",
+     "altgr": ""
+    }
+   ]
+  },
+  {
+   "name": "Row 2",
+   "keys": [
+    {
+     "base": "ش",
+     "shift": "\\",
+     "altgr": ""
+    },
+    {
+     "base": "س",
+     "shift": "",
+     "altgr": ""
+    },
+    {
+     "base": "ي",
+     "shift": "]",
+     "altgr": ""
+    },
+    {
+     "base": "ب",
+     "shift": "[",
+     "altgr": ""
+    },
+    {
+     "base": "ل",
+     "shift": "لأ",
+     "altgr": ""
+    },
+    {
+     "base": "ا",
+     "shift": "أ",
+     "altgr": ""
+    },
+    {
+     "base": "ت",
+     "shift": "ـ",
+     "altgr": ""
+    },
+    {
+     "base": "ن",
+     "shift": "،",
+     "altgr": ""
+    },
+    {
+     "base": "م",
+     "shift": "/",
+     "altgr": ""
+    },
+    {
+     "base": "ك",
+     "shift": ":",
+     "altgr": ""
+    },
+    {
+     "base": "ط",
+     "shift": "\"",
+     "altgr": ""
+    },
+    {
+     "base": "ذ",
+     "shift": "ّ",
+     "altgr": ""
+    }
+   ]
+  },
+  {
+   "name": "Row 3",
+   "keys": [
+    {
+     "base": "ـ",
+     "shift": "|",
+     "altgr": ""
+    },
+    {
+     "base": "ئ",
+     "shift": "~",
+     "altgr": ""
+    },
+    {
+     "base": "ء",
+     "shift": "ْ",
+     "altgr": ""
+    },
+    {
+     "base": "ؤ",
+     "shift": "ِ",
+     "altgr": "ِّ"
+    },
+    {
+     "base": "ر",
+     "shift": "ٍ",
+     "altgr": "ٍّ"
+    },
+    {
+     "base": "لا",
+     "shift": "لآ",
+     "altgr": ""
+    },
+    {
+     "base": "ى",
+     "shift": "آ",
+     "altgr": ""
+    },
+    {
+     "base": "ة",
+     "shift": "’",
+     "altgr": ""
+    },
+    {
+     "base": "و",
+     "shift": ",",
+     "altgr": ""
+    },
+    {
+     "base": "ز",
+     "shift": ".",
+     "altgr": ""
+    },
+    {
+     "base": "ظ",
+     "shift": "؟",
+     "altgr": ""
+    }
+   ]
+  }
+ ]
+}
