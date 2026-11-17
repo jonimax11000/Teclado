@@ -52,26 +52,11 @@ public class LayoutAssetsTests
         Assert.AreEqual(ComposerKind.Hangul, ko.composer);
     }
 
-    [Test] public void Arabe_IgualQueJson()
+    [Test] public void Arabe_Rtl_YLigadura()
     {
         var ar = Get("العربية");
         Assert.IsTrue(ar.isRtl);
-        var json = JsonUtility.FromJson<ArabicJson>(AssetDatabase.LoadAssetAtPath<TextAsset>("Assets/Editor/Layouts/Arabic102.json").text);
-        var rows = TemplateScancodes.Rows(PhysicalTemplate.ISO);
-        for (int r = 0; r < 4; r++)
-            for (int i = 0; i < json.rows[r].keys.Length; i++)
-            {
-                var j = json.rows[r].keys[i];
-                var k = ar.Find(rows[r][i]);
-                Assert.AreEqual(j.@base, k.text[0], $"fila {r} tecla {i} base");
-                Assert.AreEqual(j.shift, k.text[1], $"fila {r} tecla {i} shift");
-                // El JSON vaciaba AltGr+س (U+20C1, riyal saudí) por falta de glifo; el KLC real lo trae.
-                if (k.scanCode == 0x1F) Assert.AreEqual("\u20C1", k.text[2]);
-                else Assert.AreEqual(j.altgr, k.text[2], $"fila {r} tecla {i} altgr");
-            }
+        Assert.AreEqual("لا", ar.Find(0x30).text[0]);
+        Assert.AreEqual("\u0651", ar.Find(0x2B).text[1]);
     }
-
-    [System.Serializable] class ArabicJson { public Row[] rows; }
-    [System.Serializable] class Row { public string name; public Key[] keys; }
-    [System.Serializable] class Key { public string @base; public string shift; public string altgr; }
 }

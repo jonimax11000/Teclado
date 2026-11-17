@@ -8,6 +8,6 @@
   <Project Path="Unity.XR.Interaction.Toolkit.Samples.Hands.Editor.csproj" />
   <Project Path="Teclado.Tests.EditMode.csproj" />
   <Project Path="Unity.XR.Hands.Samples.VisualizerSample.csproj" />
-  <Project Path="Teclado.Editor.csproj" />
   <Project Path="Unity.XR.Interaction.Toolkit.Samples.Hands.csproj" />
+  <Project Path="Teclado.Editor.csproj" />
 </Solution>
