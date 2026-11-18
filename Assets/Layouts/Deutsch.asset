@@ -1,0 +1,499 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 049e770fc31d11691a66df9db501e5f2, type: 3}
+  m_Name: Deutsch
+  m_EditorClassIdentifier: Teclado.Runtime::KeyboardLayout
+  data:
+    displayName: Deutsch
+    order: 3
+    systemLanguage: German
+    template: 0
+    composer: 1
+    isRtl: 0
+    keys:
+    - scanCode: 4
+      text:
+      - 3
+      - "\xA7"
+      - "\xB3"
+      - 
+      dead: 00000000
+      caps: 1
+    - scanCode: 8
+      text:
+      - 7
+      - /
+      - '{'
+      - 
+      dead: 00000000
+      caps: 1
+    - scanCode: 9
+      text:
+      - 8
+      - (
+      - '['
+      - 
+      dead: 00000000
+      caps: 1
+    - scanCode: 10
+      text:
+      - 9
+      - )
+      - ']'
+      - 
+      dead: 00000000
+      caps: 1
+    - scanCode: 11
+      text:
+      - 0
+      - =
+      - '}'
+      - 
+      dead: 00000000
+      caps: 1
+    - scanCode: 16
+      text:
+      - q
+      - Q
+      - '@'
+      - 
+      dead: 00000000
+      caps: 1
+    - scanCode: 18
+      text:
+      - e
+      - E
+      - "\u20AC"
+      - 
+      dead: 00000000
+      caps: 1
+    - scanCode: 50
+      text:
+      - m
+      - M
+      - "\xB5"
+      - 
+      dead: 00000000
+      caps: 1
+    - scanCode: 86
+      text:
+      - <
+      - '>'
+      - '|'
+      - 
+      dead: 00000000
+      caps: 0
+    - scanCode: 26
+      text:
+      - "\xFC"
+      - "\xDC"
+      - 
+      - 
+      dead: 00000000
+      caps: 1
+    - scanCode: 27
+      text:
+      - +
+      - '*'
+      - ~
+      - 
+      dead: 00000000
+      caps: 1
+    - scanCode: 43
+      text:
+      - '#'
+      - ''''
+      - 
+      - 
+      dead: 00000000
+      caps: 1
+    - scanCode: 57
+      text:
+      - ' '
+      - ' '
+      - 
+      - 
+      dead: 00000000
+      caps: 0
+    - scanCode: 3
+      text:
+      - 2
+      - '"'
+      - "\xB2"
+      - 
+      dead: 00000000
+      caps: 1
+    - scanCode: 7
+      text:
+      - 6
+      - '&'
+      - 
+      - 
+      dead: 00000000
+      caps: 1
+    - scanCode: 53
+      text:
+      - '-'
+      - _
+      - 
+      - 
+      dead: 00000000
+      caps: 0
+    - scanCode: 12
+      text:
+      - "\xDF"
+      - '?'
+      - \
+      - "\u1E9E"
+      dead: 00000000
+      caps: 1
+    - scanCode: 41
+      text:
+      - ^
+      - "\xB0"
+      - 
+      - 
+      dead: 01000000
+      caps: 0
+    - scanCode: 2
+      text:
+      - 1
+      - '!'
+      - 
+      - 
+      dead: 00000000
+      caps: 1
+    - scanCode: 5
+      text:
+      - 4
+      - $
+      - 
+      - 
+      dead: 00000000
+      caps: 1
+    - scanCode: 6
+      text:
+      - 5
+      - '%'
+      - 
+      - 
+      dead: 00000000
+      caps: 1
+    - scanCode: 13
+      text:
+      - "\xB4"
+      - '`'
+      - 
+      - 
+      dead: 01010000
+      caps: 0
+    - scanCode: 17
+      text:
+      - w
+      - W
+      - 
+      - 
+      dead: 00000000
+      caps: 1
+    - scanCode: 19
+      text:
+      - r
+      - R
+      - 
+      - 
+      dead: 00000000
+      caps: 1
+    - scanCode: 20
+      text:
+      - t
+      - T
+      - 
+      - 
+      dead: 00000000
+      caps: 1
+    - scanCode: 21
+      text:
+      - z
+      - Z
+      - 
+      - 
+      dead: 00000000
+      caps: 1
+    - scanCode: 22
+      text:
+      - u
+      - U
+      - 
+      - 
+      dead: 00000000
+      caps: 1
+    - scanCode: 23
+      text:
+      - i
+      - I
+      - 
+      - 
+      dead: 00000000
+      caps: 1
+    - scanCode: 24
+      text:
+      - o
+      - O
+      - 
+      - 
+      dead: 00000000
+      caps: 1
+    - scanCode: 25
+      text:
+      - p
+      - P
+      - 
+      - 
+      dead: 00000000
+      caps: 1
+    - scanCode: 30
+      text:
+      - a
+      - A
+      - 
+      - 
+      dead: 00000000
+      caps: 1
+    - scanCode: 31
+      text:
+      - s
+      - S
+      - 
+      - 
+      dead: 00000000
+      caps: 1
+    - scanCode: 32
+      text:
+      - d
+      - D
+      - 
+      - 
+      dead: 00000000
+      caps: 1
+    - scanCode: 33
+      text:
+      - f
+      - F
+      - 
+      - 
+      dead: 00000000
+      caps: 1
+    - scanCode: 34
+      text:
+      - g
+      - G
+      - 
+      - 
+      dead: 00000000
+      caps: 1
+    - scanCode: 35
+      text:
+      - h
+      - H
+      - 
+      - 
+      dead: 00000000
+      caps: 1
+    - scanCode: 36
+      text:
+      - j
+      - J
+      - 
+      - 
+      dead: 00000000
+      caps: 1
+    - scanCode: 37
+      text:
+      - k
+      - K
+      - 
+      - 
+      dead: 00000000
+      caps: 1
+    - scanCode: 38
+      text:
+      - l
+      - L
+      - 
+      - 
+      dead: 00000000
+      caps: 1
+    - scanCode: 39
+      text:
+      - "\xF6"
+      - "\xD6"
+      - 
+      - 
+      dead: 00000000
+      caps: 1
+    - scanCode: 40
+      text:
+      - "\xE4"
+      - "\xC4"
+      - 
+      - 
+      dead: 00000000
+      caps: 1
+    - scanCode: 44
+      text:
+      - y
+      - Y
+      - 
+      - 
+      dead: 00000000
+      caps: 1
+    - scanCode: 45
+      text:
+      - x
+      - X
+      - 
+      - 
+      dead: 00000000
+      caps: 1
+    - scanCode: 46
+      text:
+      - c
+      - C
+      - 
+      - 
+      dead: 00000000
+      caps: 1
+    - scanCode: 47
+      text:
+      - v
+      - V
+      - 
+      - 
+      dead: 00000000
+      caps: 1
+    - scanCode: 48
+      text:
+      - b
+      - B
+      - 
+      - 
+      dead: 00000000
+      caps: 1
+    - scanCode: 49
+      text:
+      - n
+      - N
+      - 
+      - 
+      dead: 00000000
+      caps: 1
+    - scanCode: 51
+      text:
+      - ','
+      - ;
+      - 
+      - 
+      dead: 00000000
+      caps: 1
+    - scanCode: 52
+      text:
+      - .
+      - ':'
+      - 
+      - 
+      dead: 00000000
+      caps: 1
+    - scanCode: 83
+      text:
+      - ','
+      - ','
+      - 
+      - 
+      dead: 00000000
+      caps: 0
+    deadKeys:
+    - deadChar: ^
+      entries:
+      - from: a
+        to: "\xE2"
+      - from: e
+        to: "\xEA"
+      - from: i
+        to: "\xEE"
+      - from: o
+        to: "\xF4"
+      - from: u
+        to: "\xFB"
+      - from: A
+        to: "\xC2"
+      - from: E
+        to: "\xCA"
+      - from: I
+        to: "\xCE"
+      - from: O
+        to: "\xD4"
+      - from: U
+        to: "\xDB"
+      - from: ' '
+        to: ^
+    - deadChar: "\xB4"
+      entries:
+      - from: a
+        to: "\xE1"
+      - from: e
+        to: "\xE9"
+      - from: i
+        to: "\xED"
+      - from: o
+        to: "\xF3"
+      - from: u
+        to: "\xFA"
+      - from: y
+        to: "\xFD"
+      - from: A
+        to: "\xC1"
+      - from: E
+        to: "\xC9"
+      - from: I
+        to: "\xCD"
+      - from: O
+        to: "\xD3"
+      - from: U
+        to: "\xDA"
+      - from: Y
+        to: "\xDD"
+      - from: ' '
+        to: "\xB4"
+    - deadChar: '`'
+      entries:
+      - from: a
+        to: "\xE0"
+      - from: e
+        to: "\xE8"
+      - from: i
+        to: "\xEC"
+      - from: o
+        to: "\xF2"
+      - from: u
+        to: "\xF9"
+      - from: A
+        to: "\xC0"
+      - from: E
+        to: "\xC8"
+      - from: I
+        to: "\xCC"
+      - from: O
+        to: "\xD2"
+      - from: U
+        to: "\xD9"
+      - from: ' '
+        to: '`'

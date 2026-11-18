@@ -6,7 +6,7 @@ using UnityEngine.UI;
 // Cursor visible propio: el de TMP_InputField no sirve con texto RTL.
 public class CaretView : MonoBehaviour
 {
-    public KeyboardControlator controlator;
+    public InputFieldView input;
     public RectTransform caret;
     public float blinkPeriod = 0.5f;
 
@@ -18,18 +18,18 @@ public class CaretView : MonoBehaviour
 
     void Start()
     {
-        var field = controlator.field;
+        var field = input.field;
         text = field.textComponent;
         image = caret.GetComponent<Image>();
         originalAlignment = text.horizontalAlignment;
         field.customCaretColor = true;
         field.caretColor = Color.clear;
-        controlator.CaretChanged += MarkDirty;
+        input.controller.CaretChanged += MarkDirty;
     }
 
     void OnDestroy()
     {
-        if (controlator != null) controlator.CaretChanged -= MarkDirty;
+        if (input != null && input.controller != null) input.controller.CaretChanged -= MarkDirty;
     }
 
     void MarkDirty()
@@ -41,15 +41,18 @@ public class CaretView : MonoBehaviour
     void LateUpdate()
     {
         if (text == null) return;
-        string logical = controlator.field.text;
-        bool rtl = TextUtils.IsRTLInput(logical) || (logical.Length == 0 && controlator.ActiveKeyboardIsRtl);
+        var controller = input.controller;
+        var buffer = controller.Buffer;
+        string logical = buffer.Text;
+        bool rtl = TextUtils.IsRTLInput(logical) || (logical.Length == 0 && controller.ActiveKeyboardIsRtl);
         var align = rtl ? HorizontalAlignmentOptions.Right : originalAlignment;
         if (text.horizontalAlignment != align) { text.horizontalAlignment = align; dirty = true; }
 
         if (dirty)
         {
             text.ForceMeshUpdate();
-            float x = CaretMapper.CaretX(text, logical, controlator.Caret, controlator.ActiveKeyboardIsRtl);
+            // El cursor se dibuja tras el texto provisional.
+            float x = CaretMapper.CaretX(text, logical, buffer.PreeditStart + buffer.Preedit.Length, controller.ActiveKeyboardIsRtl);
             var rect = text.rectTransform.rect;
             caret.position = text.rectTransform.TransformPoint(new Vector3(x, rect.center.y, 0));
             caret.sizeDelta = new Vector2(2, text.fontSize * 1.2f);

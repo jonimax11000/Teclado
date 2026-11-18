@@ -83,7 +83,7 @@ public class CaretViewTests
         var caretGo = new GameObject("Caret", typeof(RectTransform), typeof(Image));
         caretGo.transform.SetParent(rig.Field.textViewport, false);
         var view = rig.Field.gameObject.AddComponent<CaretView>();
-        view.controlator = rig.Controlator;
+        view.input = rig.Input;
         view.caret = (RectTransform)caretGo.transform;
         yield return null;
         rig.Type("س", "ل");

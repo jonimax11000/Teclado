@@ -2,13 +2,14 @@ using RTLTMPro;
 using TMPro;
 using UnityEngine;
 
-// Fixture compartido: KeyboardControlator con un TMP_InputField cuyo texto es RTLTextMeshPro.
+// Fixture compartido: KeyboardController + InputFieldView sobre un TMP_InputField con RTLTextMeshPro.
 public class TestRig
 {
     public readonly GameObject Root;
     public readonly TMP_InputField Field;
     public readonly RTLTextMeshPro Rtl;
-    public readonly KeyboardControlator Controlator;
+    public readonly KeyboardController Controller;
+    public readonly InputFieldView Input;
 
     public TestRig()
     {
@@ -23,13 +24,16 @@ public class TestRig
         Rtl.Farsi = false;
         Rtl.PreserveNumbers = true;
         Field.textComponent = Rtl;
-        Controlator = Root.AddComponent<KeyboardControlator>();
-        Controlator.field = Field;
+        Controller = Root.AddComponent<KeyboardController>();
+        Input = go.AddComponent<InputFieldView>();
+        Input.field = Field;
+        Input.controller = Controller;
     }
 
+    // Texto confirmado directamente (sin distribución), como escribir con un teclado directo.
     public void Type(params string[] keys)
     {
-        foreach (var k in keys) Controlator.InsertChar(k);
+        foreach (var k in keys) Controller.Buffer.Commit(k);
     }
 
     public void Destroy() => Object.Destroy(Root);

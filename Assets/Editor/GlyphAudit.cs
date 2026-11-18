@@ -1,6 +1,9 @@
-// Auditoría temporal: ¿qué caracteres de cada teclado no puede dibujar su fuente (con fallbacks)?
+// Comprueba que cada carácter que puede escribir cada distribución tiene glifo en las fuentes que lo dibujan:
+// etiquetas de su plantilla (rígida y canvas) y campo de texto, con los fallbacks globales de TMP.
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
+using RTLTMPro;
 using TMPro;
 using UnityEditor;
 using UnityEditor.SceneManagement;
@@ -8,56 +11,57 @@ using UnityEngine;
 
 public static class GlyphAudit
 {
-    static bool Covered(TMP_FontAsset f, List<TMP_FontAsset> global, char ch) =>
-        f.HasCharacter(ch, true, true) || global.Any(g => g != null && g.HasCharacter(ch, true, true));
+    const string ScenePath = "Assets/Scenes/Pruebas VR.unity";
 
     [MenuItem("Teclado/Auditar glifos")]
     public static void Run()
     {
-        // Abrir la escena descarta cambios sin guardar: preguntar antes (en batchmode no pregunta).
         if (!EditorSceneManager.SaveCurrentModifiedScenesIfUserWantsTo()) return;
-        EditorSceneManager.OpenScene("Assets/Scenes/Pruebas VR.unity");
-        var global = TMP_Settings.fallbackFontAssets ?? new List<TMP_FontAsset>();
-        var fieldFont = Object.FindAnyObjectByType<KeyboardControlator>(FindObjectsInactive.Include).field.textComponent.font;
-        foreach (var kb in Object.FindObjectsByType<Keyboard>(FindObjectsInactive.Include, FindObjectsSortMode.None))
-        {
-            var missing = new SortedSet<string>();
-            var fieldMissing = new SortedSet<string>();
-            var fonts = new SortedSet<string>();
-            int keys = 0;
-            foreach (var b in kb.GetComponentsInChildren<KeyboardButton>(true))
-            {
-                keys++;
-                var label = b.GetComponentInChildren<TextMeshProUGUI>(true);
-                if (label == null || label.font == null) { missing.Add("<sin etiqueta/fuente:" + b.name + ">"); continue; }
-                var all = (b.normalForms ?? new string[0]).Concat(b.CapForms ?? new string[0]).Append(b.alterForm ?? "");
-                foreach (var s in all)
-                foreach (char ch in s)
-                {
-                    if (char.IsWhiteSpace(ch)) continue;
-                    fonts.Add(label.font.name + (label.font.atlasPopulationMode == AtlasPopulationMode.Dynamic ? "(din)" : "(est)"));
-                    if (!Covered(fieldFont, global, ch) && !global.Any(f => f != null && f.HasCharacter(ch, true, true))) fieldMissing.Add($"{ch}");
-                    if (label.font.HasCharacter(ch, true, true)) continue;
-                    if (global.Any(f => f != null && f.HasCharacter(ch, true, true))) continue;
-                    missing.Add($"{ch}(U+{(int)ch:X4})");
-                }
-            }
-            // Árabe: el campo dibuja formas contextuales (inicial/medial/final, ligaduras), no las letras base.
-            if (kb._Keyboardtype == Keyboard.KeyboardType.Arabic)
-                foreach (var b in kb.GetComponentsInChildren<KeyboardButton>(true))
-                foreach (var s in (b.normalForms ?? new string[0]).Concat(b.CapForms ?? new string[0]).Append(b.alterForm ?? ""))
-                foreach (var v in new[] { s, "ب" + s, s + "ب", "ب" + s + "ب" })
-                {
-                    if (string.IsNullOrWhiteSpace(s)) continue;
-                    var shaped = new RTLTMPro.FastStringBuilder(64);
-                    RTLTMPro.RTLSupport.FixRTL(v, shaped, false, true, true);
-                    foreach (char ch in shaped.ToString())
-                        if (!char.IsWhiteSpace(ch) && ch != '\u200B' && !Covered(fieldFont, global, ch)) fieldMissing.Add($"{ch}(U+{(int)ch:X4})");
-                }
-            string root = kb.transform.parent ? kb.transform.parent.name + "/" + kb.name : kb.name;
-            Debug.Log($"[Audit] {root} type={kb._Keyboardtype} teclas={keys} fuentes={string.Join(",", fonts)}\n   etiquetas faltan={missing.Count(m => !m.StartsWith("<"))}: {string.Join(" ", missing.Where(m => !m.StartsWith("<")).Take(40))}\n   CAMPO faltan={fieldMissing.Count}: {string.Join("", fieldMissing.Take(80))}");
-        }
-        var field = Object.FindAnyObjectByType<KeyboardControlator>(FindObjectsInactive.Include).field;
-        Debug.Log($"[Audit] campo: fuente={field.textComponent.font?.name} fallbacks={string.Join(",", field.textComponent.font?.fallbackFontAssetTable?.Select(f => f?.name) ?? new string[0])} global={string.Join(",", global.Select(f => f?.name))}");
+        var missing = Missing();
+        Debug.Log(missing.Count == 0 ? "[Audit] Todos los caracteres tienen glifo." : "[Audit] Faltan glifos:\n" + string.Join("\n", missing));
     }
+
+    public static List<string> Missing()
+    {
+        var scene = EditorSceneManager.OpenScene(ScenePath);
+        var fieldFont = scene.GetRootGameObjects().SelectMany(g => g.GetComponentsInChildren<InputFieldView>(true)).Single().field.textComponent.font;
+        var global = TMP_Settings.fallbackFontAssets ?? new List<TMP_FontAsset>();
+        var result = new List<string>();
+
+        foreach (var layout in AssetDatabase.FindAssets("t:KeyboardLayout", new[] { "Assets/Layouts" })
+                     .Select(g => AssetDatabase.LoadAssetAtPath<KeyboardLayout>(AssetDatabase.GUIDToAssetPath(g)).data))
+        {
+            var texts = layout.keys.SelectMany(k => k.text)
+                .Concat(layout.deadKeys.SelectMany(d => d.entries.Select(e => e.to).Append(d.deadChar)))
+                .Where(t => !string.IsNullOrEmpty(t)).Distinct().ToList();
+
+            var labelFonts = new[] { "ByRigidBodies", "ByCanvas" }
+                .Select(mode => AssetDatabase.LoadAssetAtPath<GameObject>(KeyboardGenerator.TemplatePath(layout.template, mode)))
+                .SelectMany(p => p.GetComponentsInChildren<KeyView>(true).Select(k => k.label?.font))
+                .Where(f => f != null).Distinct().ToList();
+
+            var fieldTexts = new List<string>(texts);
+            if (layout.isRtl)   // el campo dibuja formas contextuales y ligaduras, no las letras base
+                foreach (var t in texts)
+                    foreach (var v in new[] { t, "ب" + t, t + "ب", "ب" + t + "ب" })
+                    {
+                        var shaped = new FastStringBuilder(64);
+                        RTLSupport.FixRTL(v, shaped, false, true, true);
+                        fieldTexts.Add(shaped.ToString());
+                    }
+
+            var bad = new SortedSet<string>();
+            foreach (var font in labelFonts)
+                foreach (char c in texts.SelectMany(t => t)) if (!Covered(font, global, c)) bad.Add($"etiqueta[{font.name}] {Describe(c)}");
+            foreach (char c in fieldTexts.SelectMany(t => t)) if (!Covered(fieldFont, global, c)) bad.Add($"campo {Describe(c)}");
+            result.AddRange(bad.Select(b => $"{layout.displayName}: {b}"));
+        }
+        return result;
+    }
+
+    static bool Covered(TMP_FontAsset font, List<TMP_FontAsset> global, char c) =>
+        char.IsWhiteSpace(c) || char.IsControl(c) || c == '​' || c == '◌'
+        || font.HasCharacter(c, true, true) || global.Any(g => g != null && g.HasCharacter(c, true, true));
+
+    static string Describe(char c) => $"{c} (U+{(int)c:X4}, {CharUnicodeInfo.GetUnicodeCategory(c)})";
 }
