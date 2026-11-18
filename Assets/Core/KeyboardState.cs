@@ -43,7 +43,9 @@ namespace Teclado.Core
 
         public Layer Resolve(KeyDef key)
         {
-            bool shift = Shift ^ (CapsLock && key.caps == CapsMode.Affects);
+            // Como en Windows: Bloq Mayús solo afecta a AltGr si la tecla lo declara (CAPLOKALTGR).
+            bool caps = CapsLock && (AltGr ? key.caps == CapsMode.AffectsAltGr : key.caps != CapsMode.None);
+            bool shift = Shift ^ caps;
             return (Layer)((AltGr ? 2 : 0) + (shift ? 1 : 0));
         }
 

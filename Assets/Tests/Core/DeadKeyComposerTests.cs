@@ -25,12 +25,13 @@ public class DeadKeyComposerTests
         Assert.AreEqual("´", r.Preedit);
     }
 
+    // Revisión final M1: en Windows, muerta + muerta sin entrada escribe las dos y no deja nada pendiente.
     [Test] public void DosMuertas()
     {
         P("´", true);
         var r = P("¨", true);
-        Assert.AreEqual("´", r.Commit);
-        Assert.AreEqual("¨", r.Preedit);
+        Assert.AreEqual("´¨", r.Commit);
+        Assert.AreEqual("", r.Preedit);
     }
 
     [Test] public void Backspace_Cancela()

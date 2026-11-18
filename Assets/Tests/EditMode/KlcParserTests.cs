@@ -88,4 +88,10 @@ public class KlcParserTests
         Assert.AreEqual("", k.text[(int)Layer.AltGr]);
         Assert.AreEqual("s", k.text[0]);
     }
+
+    [Test] public void Cap5_AfectaAltGr()
+    {
+        Assert.AreEqual(CapsMode.AffectsAltGr, Parse("10\tQ\t\t5\tq\tQ\t0040\t-1\t-1").Find(0x10).caps);
+        Assert.AreEqual(CapsMode.Affects, Parse("10\tQ\t\t1\tq\tQ\t0040\t-1\t-1").Find(0x10).caps);
+    }
 }

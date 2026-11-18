@@ -27,11 +27,7 @@ namespace Teclado.Core
             pending = null;
 
             if (found) return new ComposeResult(to, "");
-            if (key.IsDead)
-            {
-                pending = key.Text;
-                return new ComposeResult(dead, pending);
-            }
+            // Muerta + muerta sin entrada: Windows escribe las dos (´ ´ → ´´) y no deja nada pendiente.
             return new ComposeResult(key.Text == " " ? dead : dead + key.Text, "");
         }
 

@@ -14,6 +14,7 @@ namespace Teclado.Core
         public void SetLayout(LayoutData layout)
         {
             FlushComposer();
+            State.ConsumeOneShot();
             Layout = layout;
             Composer = layout != null ? ComposerFactory.Create(layout) : new DirectComposer();
         }
@@ -24,7 +25,11 @@ namespace Teclado.Core
             if (key == null) return;
             int layer = (int)State.Resolve(key);
             string text = key.text[layer];
-            if (string.IsNullOrEmpty(text)) return;
+            if (string.IsNullOrEmpty(text))
+            {
+                State.ConsumeOneShot();   // un AltGr sin carácter no debe quedarse enganchado
+                return;
+            }
             Apply(Composer.Process(new KeyStroke(scanCode, text, key.dead[layer])));
             State.ConsumeOneShot();
         }

@@ -110,4 +110,22 @@ public class KeyboardSessionTests
         var empty = new KeyboardSession(new TextBuffer());
         Assert.DoesNotThrow(() => { empty.PressKey(E); empty.Space(); empty.Backspace(); empty.Left(); });
     }
+
+    // Revisión final I2: cambiar de idioma suelta Shift/AltGr de un solo uso.
+    [Test] public void CambioDeLayout_SueltaUnSoloUso()
+    {
+        s.AltGr(); s.Shift(0);
+        s.SetLayout(DirectLike());
+        Assert.IsFalse(s.State.AltGr);
+        Assert.IsFalse(s.State.Shift);
+    }
+
+    [Test] public void TeclaSinTextoEnLaCapa_SueltaUnSoloUso()
+    {
+        s.AltGr();
+        s.PressKey(E);   // AltGr+e no existe en SpanishLike
+        Assert.IsFalse(s.State.AltGr);
+        s.PressKey(E);
+        Assert.AreEqual("e", buffer.CommittedText);
+    }
 }

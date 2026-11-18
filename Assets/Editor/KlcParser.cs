@@ -90,7 +90,9 @@ public static class KlcParser
     static CapsMode Caps(string token)
     {
         if (token == "SGCap") return CapsMode.Affects;
-        return int.TryParse(token, out int v) && (v & 1) != 0 ? CapsMode.Affects : CapsMode.None;
+        if (!int.TryParse(token, out int v)) return CapsMode.None;
+        if ((v & 4) != 0) return CapsMode.AffectsAltGr;   // CAPLOKALTGR
+        return (v & 1) != 0 ? CapsMode.Affects : CapsMode.None;
     }
 
     // Un token es «-1» (vacío), un code point hexadecimal de 4+ cifras o un carácter literal.

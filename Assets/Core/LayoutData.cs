@@ -4,7 +4,7 @@ using System.Collections.Generic;
 namespace Teclado.Core
 {
     public enum Layer { Base = 0, Shift = 1, AltGr = 2, ShiftAltGr = 3 }
-    public enum CapsMode { None = 0, Affects = 1 }
+    public enum CapsMode { None = 0, Affects = 1, AffectsAltGr = 2 }   // AffectsAltGr: Cap con bit 4 (CAPLOKALTGR) en el KLC
     public enum PhysicalTemplate { ISO, ANSI, ANSI14 }
     public enum ComposerKind { Direct, DeadKey, Hangul }
 

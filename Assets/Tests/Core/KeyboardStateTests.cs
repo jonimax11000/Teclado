@@ -80,4 +80,14 @@ public class KeyboardStateTests
         s.TapShift(0); s.TapAltGr(); s.ConsumeOneShot();
         Assert.AreEqual(3, n);
     }
+
+    // Revisión final I1: en Windows, Bloq Mayús (Cap=1) no afecta a las capas AltGr; solo Cap con bit 4.
+    [Test] public void BloqMayus_NoAfectaAltGr_SalvoCapAltGr()
+    {
+        var s = new KeyboardState();
+        s.TapShift(0); s.TapShift(0.2);
+        s.TapAltGr();
+        Assert.AreEqual(Layer.AltGr, s.Resolve(Letter));
+        Assert.AreEqual(Layer.ShiftAltGr, s.Resolve(new KeyDef { caps = CapsMode.AffectsAltGr }));
+    }
 }

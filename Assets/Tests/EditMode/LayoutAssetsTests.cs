@@ -59,4 +59,16 @@ public class LayoutAssetsTests
         Assert.AreEqual("لا", ar.Find(0x30).text[0]);
         Assert.AreEqual("\u0651", ar.Find(0x2B).text[1]);
     }
+
+    // Revisión final I1, con datos reales: Bloq Mayús + AltGr + E en español da €.
+    [Test] public void Espanol_BloqMayusAltGr_Euro()
+    {
+        var buffer = new TextBuffer();
+        var s = new KeyboardSession(buffer);
+        s.SetLayout(Get("Español"));
+        s.Shift(0); s.Shift(0.1);
+        s.AltGr();
+        s.PressKey(0x12);
+        Assert.AreEqual("€", buffer.CommittedText);
+    }
 }
