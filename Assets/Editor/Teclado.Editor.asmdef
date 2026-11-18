@@ -1,0 +1,6 @@
+{
+  "name": "Teclado.Editor",
+  "references": ["Teclado.Runtime", "RTLTMPro", "Unity.TextMeshPro", "UnityEngine.UI"],
+  "includePlatforms": ["Editor"],
+  "autoReferenced": true
+}
